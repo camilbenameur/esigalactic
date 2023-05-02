@@ -15,11 +15,12 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
  if(count($rows)>0){
     echo "Identifiants corrects";
     $_SESSION["connected"] = true;
-    echo "connected";
+    header("Location:galaxy.php");
 }
  else{
     echo "Identifiants incorrects";
-    echo "wrong password or username";
+    header("Location:login.html");
+
 }
 }
 else

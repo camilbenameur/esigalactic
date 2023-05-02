@@ -102,6 +102,8 @@ input[type="submit"] {
     background-color: rgb(109, 123, 168);
     color: rgb(221, 236, 238);
     margin-top: 10px;
+    font-family: 'Bruno Ace SC';
+    text-transform: uppercase;
 }
 
 input[type="submit"]:hover{
@@ -115,7 +117,12 @@ input[type="submit"]:hover{
     top: 0;
     left: 50%;
     transform: translateX(-50%) scale(0.5);
+    transition: 500ms;
     margin: 0;
+}
+
+#logo:hover{
+    transform: translateX(-50%) scale(0.5) rotate(75deg);
 }
 
 
