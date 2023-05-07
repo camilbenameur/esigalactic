@@ -2,14 +2,14 @@
 
 session_start();
 
-$db = new PDO("mysql:host=localhost;dbname=users","root", "root");
+$db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "root");
 if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
 
  $name = $_POST['name'];
  $password = $_POST['password'];
  $mail = $_POST['mail'];
- $query = $db->prepare("SELECT id FROM users WHERE name = ? AND password = ? AND mail = ?;");
+ $query = $db->prepare("SELECT id FROM player WHERE name = ? AND password = ? AND mail = ?;");
  $query->execute([$name, $password, $mail]);
  $rows = $query->fetchAll();
  if(count($rows)>0){
