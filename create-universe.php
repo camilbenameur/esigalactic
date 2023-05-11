@@ -4,17 +4,15 @@
 $PDO = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 
 function galaxyCreation($db = $PDO) {
-    $query = "INSERT INTO galaxy (id, universe_id, name) VALUES (NULL, :universe_id, :name)";
+    $query = "INSERT INTO galaxy (id, universe_id) VALUES (NULL, :universe_id)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':universe_id', $_SESSION["universe"]);
-    $stmt->bindParam(':name', $_POST['galaxy-choice']);
 }
 
 function solarSystemCreation($db = $PDO) {
-    $query = "INSERT INTO solar_system (id, galaxy_id, name) VALUES (NULL, :galaxy_id, :name)";
+    $query = "INSERT INTO solar_system (id, galaxy_id) VALUES (NULL, :galaxy_id)";
     $stmt = $db->prepare($query);
     $stmt->bindParam(':galaxy_id', $_SESSION["universe"]);
-    $stmt->bindParam(':name', $_POST['solar-system-choice']);
 }
 
 
