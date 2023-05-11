@@ -7,7 +7,8 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
 
  $name = $_POST['name'];
- $password = password_hash($_POST['password'], "2y");
+ $password = $_POST['password'];
+ $hash_password = hash("sha512", $password);
  $mail = $_POST['mail'];
  $query = $db->prepare("SELECT id FROM player WHERE name = ? AND password = ? AND mail = ?;");
  $query->execute([$name, $hash_password, $mail]);
