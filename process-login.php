@@ -14,13 +14,12 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
  if(count($rows)>0){
     echo "Identifiants corrects";
     $_SESSION["connected"] = true;
-    $_SESSION["universe"] = $_POST['universe'];
+    $_SESSION["universe"] = $_POST['universe-choice'];
     header("Location:galaxy.php");
 }
  else{
     echo "Identifiants incorrects";
     header("Location:login.html");
-
 }
 }
 else

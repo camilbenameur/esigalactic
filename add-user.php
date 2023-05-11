@@ -18,11 +18,5 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':mail', $mail);
-        if ($stmt->execute()) {
-            echo "Les données ont été ajoutées avec succès.";
-        } else {
-            $error = $stmt->errorInfo();
-            echo "Erreur : " . $error[2];
-        }
    }
 }
