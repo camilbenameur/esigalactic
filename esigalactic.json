@@ -1,0 +1,60 @@
+[
+    {
+      "type": "header",
+      "version": "5.2.0",
+      "comment": "Export to JSON plugin for PHPMyAdmin"
+    },
+    {
+      "type": "database",
+      "name": "esigalactic"
+    },
+    {
+      "type": "table",
+      "name": "galaxy",
+      "database": "esigalactic",
+      "data": []
+    },
+    {
+      "type": "table",
+      "name": "planet",
+      "database": "esigalactic",
+      "data": []
+    },
+    {
+      "type": "table",
+      "name": "player",
+      "database": "esigalactic",
+      "data": [
+        {
+          "id": "11",
+          "name": "account",
+          "password": "$2y$10$TRLksJkFyP5CeJfMZ/47Ve.kXUGfnelrqTb/w/UUDVb7Lzk1aQDVa",
+          "mail": "account@account.com"
+        },
+        {
+          "id": "12",
+          "name": "test",
+          "password": "$2y$10$TUQormG5OgCj1/pCq88SkOcMRRTjdnxQfqgeqDR1SDuJmpupU6eXW",
+          "mail": "test@test.com"
+        },
+        {
+          "id": "13",
+          "name": "test2",
+          "password": "$2y$10$rqA0E5b5ZqV38EEgb.BV4O3Nh1ctXhCCDFlJZ7MriBFe02KnxEjv6",
+          "mail": "test@test"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "name": "solar_system",
+      "database": "esigalactic",
+      "data": []
+    },
+    {
+      "type": "table",
+      "name": "universe",
+      "database": "esigalactic",
+      "data": []
+    }
+  ]  

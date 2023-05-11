@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
 {
@@ -12,7 +13,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="galaxy-style.css">
+    <link rel="stylesheet" href="./style/galaxy-style.css">
     <link rel="icon" href="images/ESIGALACTIC.ico">
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <title>Galaxy</title>
@@ -22,8 +23,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
         <source src="video/galaxy-screen.mp4"/>
     </video>
     <div class="gradient"></div>
-
-    <div class="choice">
+    <form class="choice" method="post" action="create-universe.php" >
         <p>Galaxy</p>
         <select id="choice" name="galaxy-choice">
             <option value=""></option>
@@ -33,26 +33,23 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             <option value="option4">Galaxy 4</option>
             <option value="option5">Galaxy 5</option>
         </select>
-
         <p>solar system</p>
-        <select id="choice" name="ss-choice">
+        <select id="choice" name="solar-system-choice">
             <option value=""></option>
-            <option value="option 1">solar system 1</option>
-            <option value="option 2">solar system 2</option>
-            <option value="option 3">solar system 3</option>
-            <option value="option 4">solar system 4</option>
-            <option value="option 5">solar system 5</option>
-            <option value="option 6">solar system 6</option>
-            <option value="option 7">solar system 7</option>
-            <option value="option 8">solar system 8</option>
-            <option value="option 9">solar system 9</option>
-            <option value="option 10">solar system 10</option>
+            <option value="option 1">Solar system 1</option>
+            <option value="option 2">Solar system 2</option>
+            <option value="option 3">Solar system 3</option>
+            <option value="option 4">Solar system 4</option>
+            <option value="option 5">Solar system 5</option>
+            <option value="option 6">Solar system 6</option>
+            <option value="option 7">Solar system 7</option>
+            <option value="option 8">Solar system 8</option>
+            <option value="option 9">Solar system 9</option>
+            <option value="option 10">Solar system 10</option>
         </select>
-    </div>
-
+        <input type="submit" value="Ok">
+    </form>
     <div class="planet-display">
-        
     </div>
-
 </body>
 </html>
