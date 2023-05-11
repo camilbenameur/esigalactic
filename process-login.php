@@ -7,10 +7,10 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
 
  $name = $_POST['name'];
- $password = $_POST['password'];
+ $password = password_hash($_POST['password'], "2y");
  $mail = $_POST['mail'];
  $query = $db->prepare("SELECT id FROM player WHERE name = ? AND password = ? AND mail = ?;");
- $query->execute([$name, $password, $mail]);
+ $query->execute([$name, $hash_password, $mail]);
  $rows = $query->fetchAll();
  if(count($rows)>0){
     echo "Identifiants corrects";
