@@ -1,7 +1,8 @@
 
 <?php 
 
-$PDO = new PDO("mysql:host=localhost;dbname=esigalactic","root", "root");
+
+$PDO = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 
 function galaxyCreation($db = $PDO) {
     $query = "INSERT INTO galaxy (id, universe_id) VALUES (NULL, :universe_id)";
