@@ -1,6 +1,7 @@
 
 <?php 
 
+
 $PDO = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 
 function galaxyCreation($db = $PDO) {
