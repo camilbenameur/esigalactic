@@ -1,60 +1,849 @@
 [
-    {
-      "type": "header",
-      "version": "5.2.0",
-      "comment": "Export to JSON plugin for PHPMyAdmin"
-    },
-    {
-      "type": "database",
-      "name": "esigalactic"
-    },
-    {
-      "type": "table",
-      "name": "galaxy",
-      "database": "esigalactic",
-      "data": []
-    },
-    {
-      "type": "table",
-      "name": "planet",
-      "database": "esigalactic",
-      "data": []
-    },
-    {
-      "type": "table",
-      "name": "player",
-      "database": "esigalactic",
-      "data": [
+  {
+     "type":"header",
+     "version":"5.2.0",
+     "comment":"Export to JSON plugin for PHPMyAdmin"
+  },
+  {
+     "type":"database",
+     "name":"esigalactic"
+  },
+  {
+     "type":"table",
+     "name":"galaxy",
+     "database":"esigalactic",
+     "data":[
         {
-          "id": "11",
-          "name": "account",
-          "password": "$2y$10$TRLksJkFyP5CeJfMZ/47Ve.kXUGfnelrqTb/w/UUDVb7Lzk1aQDVa",
-          "mail": "account@account.com"
+           "id":"4",
+           "universe_id":"21"
         },
         {
-          "id": "12",
-          "name": "test",
-          "password": "$2y$10$TUQormG5OgCj1/pCq88SkOcMRRTjdnxQfqgeqDR1SDuJmpupU6eXW",
-          "mail": "test@test.com"
+           "id":"5",
+           "universe_id":"21"
         },
         {
-          "id": "13",
-          "name": "test2",
-          "password": "$2y$10$rqA0E5b5ZqV38EEgb.BV4O3Nh1ctXhCCDFlJZ7MriBFe02KnxEjv6",
-          "mail": "test@test"
+           "id":"6",
+           "universe_id":"21"
+        },
+        {
+           "id":"7",
+           "universe_id":"21"
+        },
+        {
+           "id":"8",
+           "universe_id":"21"
         }
-      ]
-    },
-    {
-      "type": "table",
-      "name": "solar_system",
-      "database": "esigalactic",
-      "data": []
-    },
-    {
-      "type": "table",
-      "name": "universe",
-      "database": "esigalactic",
-      "data": []
-    }
-  ]  
+     ]
+  },
+  {
+     "type":"table",
+     "name":"planet",
+     "database":"esigalactic",
+     "data":[
+        {
+           "id":"4",
+           "name":"Planet 1",
+           "position":"8",
+           "size":"9",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"5",
+           "name":"Planet 2",
+           "position":"3",
+           "size":"4",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"6",
+           "name":"Planet 3",
+           "position":"10",
+           "size":"4",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"7",
+           "name":"Planet 4",
+           "position":"9",
+           "size":"4",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"8",
+           "name":"Planet 5",
+           "position":"6",
+           "size":"1",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"9",
+           "name":"Planet 6",
+           "position":"5",
+           "size":"2",
+           "solar_system_id":"44"
+        },
+        {
+           "id":"10",
+           "name":"Planet 1",
+           "position":"4",
+           "size":"9",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"11",
+           "name":"Planet 2",
+           "position":"9",
+           "size":"1",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"12",
+           "name":"Planet 3",
+           "position":"2",
+           "size":"3",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"13",
+           "name":"Planet 4",
+           "position":"10",
+           "size":"5",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"14",
+           "name":"Planet 5",
+           "position":"7",
+           "size":"6",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"15",
+           "name":"Planet 6",
+           "position":"1",
+           "size":"3",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"16",
+           "name":"Planet 7",
+           "position":"8",
+           "size":"4",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"17",
+           "name":"Planet 8",
+           "position":"3",
+           "size":"1",
+           "solar_system_id":"45"
+        },
+        {
+           "id":"18",
+           "name":"Planet 1",
+           "position":"7",
+           "size":"3",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"19",
+           "name":"Planet 2",
+           "position":"9",
+           "size":"7",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"20",
+           "name":"Planet 3",
+           "position":"6",
+           "size":"6",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"21",
+           "name":"Planet 4",
+           "position":"2",
+           "size":"5",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"22",
+           "name":"Planet 5",
+           "position":"1",
+           "size":"6",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"23",
+           "name":"Planet 6",
+           "position":"3",
+           "size":"2",
+           "solar_system_id":"46"
+        },
+        {
+           "id":"24",
+           "name":"Planet 1",
+           "position":"2",
+           "size":"6",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"25",
+           "name":"Planet 2",
+           "position":"6",
+           "size":"6",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"26",
+           "name":"Planet 3",
+           "position":"4",
+           "size":"5",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"27",
+           "name":"Planet 4",
+           "position":"5",
+           "size":"3",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"28",
+           "name":"Planet 5",
+           "position":"1",
+           "size":"6",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"29",
+           "name":"Planet 6",
+           "position":"3",
+           "size":"4",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"30",
+           "name":"Planet 7",
+           "position":"7",
+           "size":"9",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"31",
+           "name":"Planet 8",
+           "position":"10",
+           "size":"6",
+           "solar_system_id":"47"
+        },
+        {
+           "id":"32",
+           "name":"Planet 1",
+           "position":"4",
+           "size":"10",
+           "solar_system_id":"48"
+        },
+        {
+           "id":"33",
+           "name":"Planet 2",
+           "position":"8",
+           "size":"6",
+           "solar_system_id":"48"
+        },
+        {
+           "id":"34",
+           "name":"Planet 3",
+           "position":"6",
+           "size":"3",
+           "solar_system_id":"48"
+        },
+        {
+           "id":"35",
+           "name":"Planet 4",
+           "position":"5",
+           "size":"4",
+           "solar_system_id":"48"
+        },
+        {
+           "id":"36",
+           "name":"Planet 1",
+           "position":"6",
+           "size":"2",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"37",
+           "name":"Planet 2",
+           "position":"4",
+           "size":"3",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"38",
+           "name":"Planet 3",
+           "position":"8",
+           "size":"3",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"39",
+           "name":"Planet 4",
+           "position":"9",
+           "size":"10",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"40",
+           "name":"Planet 5",
+           "position":"3",
+           "size":"6",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"41",
+           "name":"Planet 6",
+           "position":"1",
+           "size":"7",
+           "solar_system_id":"49"
+        },
+        {
+           "id":"42",
+           "name":"Planet 1",
+           "position":"9",
+           "size":"1",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"43",
+           "name":"Planet 2",
+           "position":"7",
+           "size":"6",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"44",
+           "name":"Planet 3",
+           "position":"10",
+           "size":"9",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"45",
+           "name":"Planet 4",
+           "position":"2",
+           "size":"7",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"46",
+           "name":"Planet 5",
+           "position":"4",
+           "size":"1",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"47",
+           "name":"Planet 6",
+           "position":"8",
+           "size":"10",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"48",
+           "name":"Planet 7",
+           "position":"3",
+           "size":"2",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"49",
+           "name":"Planet 8",
+           "position":"1",
+           "size":"5",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"50",
+           "name":"Planet 9",
+           "position":"5",
+           "size":"3",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"51",
+           "name":"Planet 10",
+           "position":"6",
+           "size":"7",
+           "solar_system_id":"50"
+        },
+        {
+           "id":"52",
+           "name":"Planet 1",
+           "position":"9",
+           "size":"7",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"53",
+           "name":"Planet 2",
+           "position":"1",
+           "size":"3",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"54",
+           "name":"Planet 3",
+           "position":"3",
+           "size":"7",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"55",
+           "name":"Planet 4",
+           "position":"10",
+           "size":"4",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"56",
+           "name":"Planet 5",
+           "position":"4",
+           "size":"2",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"57",
+           "name":"Planet 6",
+           "position":"7",
+           "size":"5",
+           "solar_system_id":"51"
+        },
+        {
+           "id":"58",
+           "name":"Planet 1",
+           "position":"6",
+           "size":"2",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"59",
+           "name":"Planet 2",
+           "position":"10",
+           "size":"8",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"60",
+           "name":"Planet 3",
+           "position":"4",
+           "size":"10",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"61",
+           "name":"Planet 4",
+           "position":"9",
+           "size":"5",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"62",
+           "name":"Planet 5",
+           "position":"1",
+           "size":"4",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"63",
+           "name":"Planet 6",
+           "position":"7",
+           "size":"10",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"64",
+           "name":"Planet 7",
+           "position":"3",
+           "size":"5",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"65",
+           "name":"Planet 8",
+           "position":"5",
+           "size":"2",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"66",
+           "name":"Planet 9",
+           "position":"8",
+           "size":"3",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"67",
+           "name":"Planet 10",
+           "position":"2",
+           "size":"3",
+           "solar_system_id":"52"
+        },
+        {
+           "id":"68",
+           "name":"Planet 1",
+           "position":"1",
+           "size":"2",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"69",
+           "name":"Planet 2",
+           "position":"8",
+           "size":"3",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"70",
+           "name":"Planet 3",
+           "position":"7",
+           "size":"3",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"71",
+           "name":"Planet 4",
+           "position":"6",
+           "size":"5",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"72",
+           "name":"Planet 5",
+           "position":"5",
+           "size":"3",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"73",
+           "name":"Planet 6",
+           "position":"10",
+           "size":"2",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"74",
+           "name":"Planet 7",
+           "position":"2",
+           "size":"4",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"75",
+           "name":"Planet 8",
+           "position":"4",
+           "size":"4",
+           "solar_system_id":"53"
+        },
+        {
+           "id":"76",
+           "name":"Planet 9",
+           "position":"9",
+           "size":"9",
+           "solar_system_id":"53"
+        }
+     ]
+  },
+  {
+     "type":"table",
+     "name":"player",
+     "database":"esigalactic",
+     "data":[
+        {
+           "id":"11",
+           "name":"account",
+           "password":"$2y$10$TRLksJkFyP5CeJfMZ\/47Ve.kXUGfnelrqTb\/w\/UUDVb7Lzk1aQDVa",
+           "mail":"account@account.com"
+        },
+        {
+           "id":"12",
+           "name":"test",
+           "password":"$2y$10$TUQormG5OgCj1\/pCq88SkOcMRRTjdnxQfqgeqDR1SDuJmpupU6eXW",
+           "mail":"test@test.com"
+        },
+        {
+           "id":"13",
+           "name":"test2",
+           "password":"$2y$10$rqA0E5b5ZqV38EEgb.BV4O3Nh1ctXhCCDFlJZ7MriBFe02KnxEjv6",
+           "mail":"test@test"
+        }
+     ]
+  },
+  {
+     "type":"table",
+     "name":"solar_system",
+     "database":"esigalactic",
+     "data":[
+        {
+           "id":"4",
+           "name":"Solar System 1",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"5",
+           "name":"Solar System 2",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"6",
+           "name":"Solar System 3",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"7",
+           "name":"Solar System 4",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"8",
+           "name":"Solar System 5",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"9",
+           "name":"Solar System 6",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"10",
+           "name":"Solar System 7",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"11",
+           "name":"Solar System 8",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"12",
+           "name":"Solar System 9",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"13",
+           "name":"Solar System 10",
+           "galaxy_id":"4"
+        },
+        {
+           "id":"14",
+           "name":"Solar System 1",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"15",
+           "name":"Solar System 2",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"16",
+           "name":"Solar System 3",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"17",
+           "name":"Solar System 4",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"18",
+           "name":"Solar System 5",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"19",
+           "name":"Solar System 6",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"20",
+           "name":"Solar System 7",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"21",
+           "name":"Solar System 8",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"22",
+           "name":"Solar System 9",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"23",
+           "name":"Solar System 10",
+           "galaxy_id":"5"
+        },
+        {
+           "id":"24",
+           "name":"Solar System 1",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"25",
+           "name":"Solar System 2",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"26",
+           "name":"Solar System 3",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"27",
+           "name":"Solar System 4",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"28",
+           "name":"Solar System 5",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"29",
+           "name":"Solar System 6",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"30",
+           "name":"Solar System 7",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"31",
+           "name":"Solar System 8",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"32",
+           "name":"Solar System 9",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"33",
+           "name":"Solar System 10",
+           "galaxy_id":"6"
+        },
+        {
+           "id":"34",
+           "name":"Solar System 1",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"35",
+           "name":"Solar System 2",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"36",
+           "name":"Solar System 3",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"37",
+           "name":"Solar System 4",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"38",
+           "name":"Solar System 5",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"39",
+           "name":"Solar System 6",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"40",
+           "name":"Solar System 7",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"41",
+           "name":"Solar System 8",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"42",
+           "name":"Solar System 9",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"43",
+           "name":"Solar System 10",
+           "galaxy_id":"7"
+        },
+        {
+           "id":"44",
+           "name":"Solar System 1",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"45",
+           "name":"Solar System 2",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"46",
+           "name":"Solar System 3",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"47",
+           "name":"Solar System 4",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"48",
+           "name":"Solar System 5",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"49",
+           "name":"Solar System 6",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"50",
+           "name":"Solar System 7",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"51",
+           "name":"Solar System 8",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"52",
+           "name":"Solar System 9",
+           "galaxy_id":"8"
+        },
+        {
+           "id":"53",
+           "name":"Solar System 10",
+           "galaxy_id":"8"
+        }
+     ]
+  },
+  {
+     "type":"table",
+     "name":"universe",
+     "database":"esigalactic",
+     "data":[
+        {
+           "id":"21",
+           "name":"univers"
+        }
+     ]
+  }
+]
