@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>Admin page</title>
     <link rel="stylesheet" href="../style/admin.css">
-    <link rel="icon" href="images/ESIGALACTIC.ico">
+    <link rel="icon" href="../images/ESIGALACTIC.ico">
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
 </head>
 <body>
