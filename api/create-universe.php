@@ -48,7 +48,7 @@ function createSolarSystems($galaxyId, $solarSystemName, PDO $PDO = null)
     }
 }
 
-function createGalaxies($universeId, PDO $PDO = null)
+function createGalaxies($universeId, $galaxyName, PDO $PDO = null)
 {
     if (!$PDO) {
         global $db;
@@ -60,8 +60,8 @@ function createGalaxies($universeId, PDO $PDO = null)
     $rows = $query->fetchAll();
 
     if (count($rows) < 5) {
-        $query = $PDO->prepare("INSERT INTO galaxy (id, universe_id) VALUES (NULL, ?);");
-        if ($query->execute([$universeId])) {
+        $query = $PDO->prepare("INSERT INTO galaxy (id, universe_id, name) VALUES (NULL, ?, ?);");
+        if ($query->execute([$universeId, $galaxyName])) {
             echo "Galaxy created successfully.";
         } else {
             $error = $query->errorInfo();
@@ -114,7 +114,7 @@ $rows = $query->fetchAll();
 $universeId = $rows[0]['id'];
 
 for ($i = 1; $i <= 5; $i++) {
-    createGalaxies($universeId, $db);
+    createGalaxies($universeId, "Galaxy " . $i, $db);
 }
 
 $query = $db->prepare("SELECT id FROM galaxy WHERE universe_id = ?;");
