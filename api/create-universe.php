@@ -1,6 +1,6 @@
 <?php
 
-$db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "");
+$db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "root");
 
 function createPlanet($solarSystemId, $planetName, PDO $PDO = null)
 {
