@@ -13,39 +13,42 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/galaxy-style.css">
-    <link rel="icon" href="images/ESIGALACTIC.ico">
+    <link rel="stylesheet" href="../style/galaxy-style.css">
+    <link rel="icon" href="../images/ESIGALACTIC.ico">
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <title>Galaxy</title>
 </head>
 <body>
     <video autoplay muted loop id="myVideo">
-        <source src="video/galaxy-screen.mp4"/>
+        <source src="../video/galaxy-screen.mp4"/>
     </video>
     <div class="gradient"></div>
-    <form class="choice" method="post" action="../api/show-universe.php" >
+    <form class="choice" method="post" action="../api/show-solar-system.php" >
         <p>Galaxy</p>
         <select id="choice" name="galaxy-choice">
-            <option value=""></option>
-            <option value="option1">Galaxy 1</option>
-            <option value="option2">Galaxy 2</option>
-            <option value="option3">Galaxy 3</option>
-            <option value="option4">Galaxy 4</option>
-            <option value="option5">Galaxy 5</option>
+            <?php
+                $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
+                $query = $db->prepare("SELECT name FROM galaxy WHERE ? = universe_id;");
+                $query->execute([$_SESSION["universe"]]);
+                $rows = $query->fetchAll();
+                foreach($rows as $row)
+                {
+                    echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
+                }
+            ?>
         </select>
-        <p>solar system</p>
+        <p>Solar system</p>
         <select id="choice" name="solar-system-choice">
-            <option value=""></option>
-            <option value="option 1">Solar system 1</option>
-            <option value="option 2">Solar system 2</option>
-            <option value="option 3">Solar system 3</option>
-            <option value="option 4">Solar system 4</option>
-            <option value="option 5">Solar system 5</option>
-            <option value="option 6">Solar system 6</option>
-            <option value="option 7">Solar system 7</option>
-            <option value="option 8">Solar system 8</option>
-            <option value="option 9">Solar system 9</option>
-            <option value="option 10">Solar system 10</option>
+            <?php 
+                $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
+                $query = $db->prepare("SELECT name FROM solar_system WHERE ? = galaxy_id;");
+                $query->execute([$_SESSION["universe"]]);
+                $rows = $query->fetchAll();
+                foreach($rows as $row)
+                {
+                    echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
+                }
+            ?>
         </select>
         <input type="submit" value="Ok">
     </form>
