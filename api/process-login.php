@@ -3,7 +3,7 @@
 session_start();
 
 
-$db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
+$db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "root");
 if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
  $name = $_POST['name'];
