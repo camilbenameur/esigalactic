@@ -44,7 +44,7 @@ video{
     padding-bottom: 30px;
 }
 
-#choice{
+.location-choice{
     width: 100%;
     padding: 10px;
     border: none;
@@ -54,7 +54,7 @@ video{
     color: rgb(221, 236, 238);
 }
 
-input[type="submit"] {
+.form-button {
     width: 60%;
     padding: 10px;
     border: none;
@@ -67,7 +67,7 @@ input[type="submit"] {
     text-transform: uppercase;
 }
 
-input[type="submit"]:hover{
+.form-button:hover{
     background-color: blueviolet;
     cursor: pointer;
     transition: 500ms;
