@@ -52,67 +52,8 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
         </select>
         <input id="form-button" class="form-button" type="button" value="Ok">
     </form>
-    <div class="planet-display">
-        <p id="line-1">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-2">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-3">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-4">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-5">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-6">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-7">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-8">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-9">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
-
-        <p id="line-10">
-            <span>0</span>
-            <span>0</span>
-            <span>0</span>
-        </p>
+    <div id="planet-display" class="planet-display">   
+        <script src="../js/galaxy.js"></script>    
     </div>
-    <script src="../js/galaxy.js"></script>
 </body>
 </html>
