@@ -1,6 +1,6 @@
 <?php
 
-$db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "root");
+$db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "");
 
 function createPlanet($solarSystemId, $planetName, PDO $PDO = null)
 {
@@ -126,19 +126,18 @@ foreach ($rows as $row) {
     for ($i = 1; $i <= 10; $i++) {
         createSolarSystems($galaxyId, "Solar System " . $i, $db);
     }
+    $query = $db->prepare("SELECT id FROM solar_system WHERE galaxy_id = ?;");
+    $query->execute([$galaxyId]);
+    $rows = $query->fetchAll();
+    foreach ($rows as $row) {
+        $solarSystemId = $row['id'];
+        $planetCount = rand(4, 10);
+        for ($i = 1; $i <= $planetCount; $i++) {
+            createPlanet($solarSystemId, "Planet " . $i, $db);
+        }
+}
 }
 
-$query = $db->prepare("SELECT id FROM solar_system WHERE galaxy_id = ?;");
-$query->execute([$galaxyId]);
-$rows = $query->fetchAll();
-
-foreach ($rows as $row) {
-    $solarSystemId = $row['id'];
-    $planetCount = rand(4, 10);
-    for ($i = 1; $i <= $planetCount; $i++) {
-        createPlanet($solarSystemId, "Planet " . $i, $db);
-    }
-}
 
 ?>
 ```

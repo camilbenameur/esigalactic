@@ -20,7 +20,6 @@
         <p>Login</p>
         <p>Username</p>
             <form action="../api/process-login.php" method="post">
-
                     <input type="text" name="name" placeholder="Username">
                     <p>E-mail</p>
                     <input type="email" name="mail" placeholder="E-mail">
@@ -28,10 +27,16 @@
                     <input type="password" name="password" placeholder="Password">                              
                     <p>Universe</p>
                     <select id="choice" name="universe-choice">
-                        <option value=""></option>
-                        <option value="1">Universe 1</option>
-                        <option value="2">Universe 2</option>
-                        <option value="3">Universe 3</option>
+                        <?php 
+                            $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
+                            $query = $db->prepare("SELECT id, name FROM universe;");
+                            $query->execute();
+                            $rows = $query->fetchAll();
+                            foreach($rows as $row)
+                            {
+                                echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
+                            }
+                        ?>
                     </select>
                     <input type="submit" value="OK">    
             </form>       
