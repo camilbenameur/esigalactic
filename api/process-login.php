@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-
-
 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
