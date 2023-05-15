@@ -3,7 +3,7 @@
 session_start();
 
 
-$db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "root");
+$db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
 {
  $name = $_POST['name'];
@@ -19,7 +19,7 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     $_SESSION["universe"] = $_POST['universe-choice'];
     header("Location:../front/galaxy.php");
 }
- else{
+ else {
     echo "Identifiants incorrects";
     header("Location:../front/login.html");
 }
