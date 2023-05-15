@@ -14,6 +14,7 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
  $query->execute([$name, $hash_password, $mail]);
  $rows = $query->fetchAll();
  if(count($rows)>0){
+    session_start();
     echo "Identifiants corrects";
     $_SESSION["connected"] = true;
     $_SESSION["universe"] = $_POST['universe-choice'];
