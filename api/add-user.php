@@ -13,13 +13,13 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     $rows = $query->fetchAll();
     if(count($rows)>0) {
         echo "username or e-mail already used ";
-        header("Location:../front/login.html");
+        header("Location:../front/login.php");
     }
     else {
         $query = $db->prepare("INSERT INTO player (id, name, password, mail) VALUES (NULL, ?, ?, ?) ;");
         if ($query->execute([$name, $hash_password, $mail])) {
             echo "Les données ont été ajoutées avec succès.";
-            header("Location:../front/login.html");
+            header("Location:../front/login.php");
         } 
         else {
             $error = $query->errorInfo();

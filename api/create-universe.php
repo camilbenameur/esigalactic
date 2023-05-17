@@ -2,15 +2,11 @@
 
 $db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "");
 
-function createPlanet($solarSystemId, $planetName, PDO $PDO = null)
+function createPlanet($solarSystemId, $planetName, $position, PDO $PDO = null)
 {
-    if (!$PDO) {
-        global $db;
-        $PDO = $db;
-    }
+    $PDO = $PDO ?? $GLOBALS['db'];
 
-    $position = rand(1, 10);
-    $size = rand(1, 10);
+    $size = ($position <= 5) ? (80 + ($position * 10)) : (130 - (($position - 5) * 10));
 
     $query = $PDO->prepare("SELECT id FROM planet WHERE solar_system_id = ? AND position = ?;");
     $query->execute([$solarSystemId, $position]);
@@ -18,16 +14,19 @@ function createPlanet($solarSystemId, $planetName, PDO $PDO = null)
 
     if (count($rows) > 0) {
         createPlanet($solarSystemId, $planetName, $PDO);
-    } else {
+    } 
+    else {
         $query = $PDO->prepare("INSERT INTO planet (id, name, position, size, solar_system_id) VALUES (NULL, ?, ?, ?, ?);");
         if ($query->execute([$planetName, $position, $size, $solarSystemId])) {
             echo "Planet created successfully.";
-        } else {
+        } 
+        else {
             $error = $query->errorInfo();
             echo "Error: " . $error[2];
         }
     }
 }
+
 
 function createSolarSystems($galaxyId, $solarSystemName, PDO $PDO = null)
 {
@@ -132,12 +131,22 @@ foreach ($rows as $row) {
     foreach ($rows as $row) {
         $solarSystemId = $row['id'];
         $planetCount = rand(4, 10);
-        for ($i = 1; $i <= $planetCount; $i++) {
-            createPlanet($solarSystemId, "Planet " . $i, $db);
-        }
-}
-}
+        $query = $db->prepare("SELECT id, position FROM planet WHERE solar_system_id = ?;");
+        $query->execute([$solarSystemId]);
+        $rows = $query->fetchAll();
 
+        $liste = range(1, 10); 
+        $taille = rand(1, 10); 
+        shuffle($liste); 
+        $liste = array_slice($liste, 0, $taille);
+        sort($liste);
+        $loopCount = 0;
+        foreach ($liste as $position) {
+            $loopCount = $loopCount + 1;
+            createPlanet($solarSystemId, "Planet " . $loopCount, $position, $db);
+        }
+    }
+}
 
 ?>
 ```

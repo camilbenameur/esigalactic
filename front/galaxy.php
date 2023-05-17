@@ -42,7 +42,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             <?php 
                     $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
                     $query = $db->prepare("SELECT id, name FROM solar_system WHERE ? = galaxy_id;");
-                    $query->execute([$_SESSION["universe"]]);
+                    $query->execute([$_SESSION["galaxy-choice"]]);
                     $rows = $query->fetchAll();
                     foreach($rows as $row)
                     {
@@ -50,7 +50,6 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
                     }
             ?>
         </select>
-        <input id="form-button" class="form-button" type="button" value="Ok">
     </form>
     <div id="planet-display" class="planet-display">   
         <script src="../js/galaxy.js"></script>    
