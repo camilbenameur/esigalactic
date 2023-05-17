@@ -15,11 +15,13 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     echo "Identifiants corrects";
     $_SESSION["connected"] = true;
     $_SESSION["universe"] = $_POST['universe-choice'];
+    $_SESSION["galaxy-choice"] = 1;
+    $_SESSION["solar-system-choice"] = 1;
     header("Location:../front/galaxy.php");
 }
  else {
     echo "Identifiants incorrects";
-    header("Location:../front/login.html");
+    header("Location:../front/login.php");
 }
 }
 else
