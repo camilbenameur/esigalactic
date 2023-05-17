@@ -9,6 +9,7 @@ async function update() {
   const solarSystemId = solarSystemChoice.value;
   const answer = await fetch(url + '?galaxy-choice=' + galaxyId + '&solar-system-choice=' + solarSystemId);
   const data = await answer.json();
+  console.log(data);
   data.forEach(element => {
 
     let planet = document.createElement('p');
@@ -20,7 +21,6 @@ async function update() {
     });
 }
 
-const formButton = document.getElementById('form-button');
-
+window.onload = update;
 solarSystemChoice.addEventListener('change', update);
 galaxyChoice.addEventListener('change', update);
