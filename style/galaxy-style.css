@@ -105,3 +105,34 @@ video{
     width: 10vw;
     margin: 0 20px 0 20px;
 }
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgb(109, 123, 168);
+    color: rgb(221, 236, 238);
+    margin-top: 10px;
+    font-family: 'Bruno Ace SC';
+    text-transform: uppercase;
+}
+
+input[type="submit"]:hover{
+    background-color: blueviolet;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.disconnect-button{
+    position: absolute;
+    left: 10%;
+    transform: translateX(-10%);
+    bottom: 50vh;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
