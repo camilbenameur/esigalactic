@@ -1,8 +1,3 @@
-<?php 
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,4 +11,8 @@
     <form class="choice" method="post" action="../api/create-universe.php" >
         <input type="text" name="universeName" placeholder="Universe name">
         <input type="submit" value="New universe">
+    </form>
+    <form class="choice" method="post" action="../api/set-up-infrastructures.php" >
+        <input type="submit" value="set-up-infrastructures">
+    </form>
 </body>
