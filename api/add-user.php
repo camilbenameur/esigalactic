@@ -25,5 +25,5 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
             $error = $query->errorInfo();
             echo "Erreur : " . $error[2];
         }
-     }
+    }
 }
