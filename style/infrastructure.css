@@ -63,7 +63,7 @@ form{
 
 .infrastructure-display{
     position: absolute;
-    left: calc(45%);
+    left: calc(35%);
     background-color: transparent;
     border: 2px solid rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
@@ -130,4 +130,25 @@ input[type="submit"]:hover{
 
 select{
     margin: 10px;
+}
+
+.display-picture{
+    position: absolute;
+    right: 5vw;
+    transform: calc(5%);
+    top:25vh;
+    background-color: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#facility-pic{
+    border-radius: 5px;
+}
+
+#facility-pic:hover{
+    transition: 500ms;
+    filter: blur(1px);
 }
