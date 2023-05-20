@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style/infrastructure.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
+    <link rel="icon" href="../images/ESIGALACTIC.ico">
+    <title>Infrastructure</title>
+</head>
+<body>
+    <img id="bg" draggable="false" src="../images/infrastructure-background.jpg" alt="background">
+    <div class="gradient"></div>
+
+    <div class="infrastructure">
+        <h3>infrastructure</h3>
+        <form action="" method="post">
+            <select id="choice" name="archetype-choice">
+                <option></option>
+                <option>Defense</option>
+                <option>Resource</option>
+                <option>Facility</option>
+            </select>
+        </form>
+    </div>
+    <div class="infrastructure-display">
+        <span class="display">
+            <img id="structure" draggable="false" width=280px height=195px src="../images/infrastructures/lab.jpg" alt="infrastructure">
+            <div class="facility-display">
+                <p>laboratory</p>
+                <p>current level : </p>
+                <p>cost : </p>
+            </div>
+            <input type="submit" value="BUILD">  
+        </span>
+        <span>
+            <button class="slider left"><</button>
+            <button class="slider right">></button>
+        </span>
+
+        <script src="../js/infrastructure.js"></script>
+    </div>
+    
+    
+</body>
+</html>
