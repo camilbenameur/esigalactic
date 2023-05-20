@@ -51,6 +51,9 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             ?>
         </select>
     </form>
+    <!-- <form id="choice-form" action="../api/disconnect.php" method="post">
+        <input id="disconnect" type="submit" value="Disconnect">
+    </form> -->
     <div id="planet-display" class="planet-display">   
         <script src="../js/galaxy.js"></script>    
     </div>
