@@ -8,6 +8,7 @@ body {
     text-transform: uppercase;
     background-color: black;
     display: flex;
+    flex-direction: column;
     min-width: 600px;
 }
 
@@ -36,6 +37,7 @@ body {
     justify-content: center;  
     align-items: center;
     padding-bottom: 30px;
+    width:50vw;
 }
 
 #choice{
@@ -49,7 +51,7 @@ body {
 }
 
 input[type="submit"] {
-    width: 80%;
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -61,12 +63,22 @@ input[type="submit"] {
     text-transform: uppercase;
 }
 
+input[type="submit"]:hover{
+    background-color: blueviolet;
+    cursor: pointer;
+    transition: 500ms;
+}
+
 input[type="text"] { 
     width: 100%;
-    padding: 10px;
+    padding: 10px 0 10px;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     background-color: rgb(157, 168, 203);
     color: rgb(221, 236, 238);
+}
+
+form{
+    width:100%;
 }
