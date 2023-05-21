@@ -2,61 +2,61 @@
 
 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
 
-$archetypeName = "research lab";
+$archetypeName = "Research lab";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 50, 500, 1000, 0, 0, 0, 1);
     insertInfrastructureFacility($db);
 }
 
-$archetypeName = "shipyard";
+$archetypeName = "Shipyard";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 50, 500, 500, 0, 0, 0, 2);
     insertInfrastructureFacility($db);
 }
 
-$archetypeName = "nanite factory";
+$archetypeName = "Nanite factory";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 600, 5000, 10000, 0, 0, 0, 3);
     insertInfrastructureFacility($db);
 }
 
-$archetypeName = "metal mine";
+$archetypeName = "Metal mine";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 10, 10, 100, 0, 1, 0, 0);
     insertInfrastructureResources($db, "metal", "2", "3");
 }
 
-$archetypeName = "deuterium synthesizer";
+$archetypeName = "Deuterium synthesizer";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 25, 50, 200, 0, 2, 0, 0);
     insertInfrastructureResources($db, "deuterium", "3", "1");
 }
 
-$archetypeName = "solar plant";
+$archetypeName = "Solar plant";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 10, 0, 150, 20, 3, 0, 0);
     insertInfrastructureResources($db, "energy", "1", "20");
 }
 
-$archetypeName = "fusion plant";
+$archetypeName = "Fusion plant";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 120, 2000, 5000, 2000, 4, 0, 0);
     insertInfrastructureResources($db, "energy", "1", "50");
 }
 
-$archetypeName = "laser artillery";
+$archetypeName = "Laser artillery";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 10, 0, 1500, 300, 0, 1, 0);
     insertInfrastructureDefence($db, 25, 100);
 }
 
-$archetypeName = "ion cannon";
+$archetypeName = "Ion cannon";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 40, 0, 5000, 1000, 0, 2, 0);
     insertInfrastructureDefence($db, 200, 250);
 }
 
-$archetypeName = "shield";
+$archetypeName = "Shield";
 if (!checkIfExists($db, 'infrastructure_archetype', 'name', $archetypeName)) {
     insertInfrastructureArchetype($db, $archetypeName, 60, 1000, 10000, 5000, 0, 3, 0);
     insertInfrastructureDefence($db, 2000, 0);
