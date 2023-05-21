@@ -17,6 +17,7 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     $_SESSION["universe"] = $_POST['universe-choice'];
     $_SESSION["galaxy-choice"] = 1;
     $_SESSION["solar-system-choice"] = 1;
+    $_SESSION["planet-choice"] = 1;
     echo "Identifiants corrects";
     $query = $db->prepare("SELECT * FROM wallet WHERE player_id = ?;");
     $query->execute([$_SESSION["player_id"]]);
