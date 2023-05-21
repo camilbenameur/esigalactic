@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 
 class Infrastructure
 {
@@ -20,11 +23,11 @@ class Infrastructure
         if (!empty($infrastructureArchetype)) {
             $infrastructureArchetype = $infrastructureArchetype[0];
 
-            if (isset($infrastructureArchetype["defence_id"])) {
+            if ($infrastructureArchetype["defence_id"]) {
                 $defenceArchetype = $this->fetchDefenceArchetype($infrastructureArchetype["defence_id"]);
-            } elseif (isset($infrastructureArchetype["facility_id"])) {
+            } elseif ($infrastructureArchetype["facility_id"]) {
                 $facilityArchetype = $this->fetchFacilityArchetype($infrastructureArchetype["facility_id"]);
-            } elseif (isset($infrastructureArchetype["resource_id"])) {
+            } elseif ($infrastructureArchetype["resource_id"]) {
                 $resourceArchetype = $this->fetchResourceArchetype($infrastructureArchetype["resource_id"]);
             }
         }
@@ -42,8 +45,8 @@ class Infrastructure
 
     private function fetchInfrastructure($archetypeId)
     {
-        $query = $this->db->prepare("SELECT * FROM infrastructure WHERE player_id = ? AND archetype_id = ?;");
-        $query->execute([$_SESSION["player_id"], $archetypeId]);
+        $query = $this->db->prepare("SELECT * FROM infrastructure WHERE planet_id = ? AND archetype_id = ?;");
+        $query->execute([$_SESSION["planet-choice"], $archetypeId]);
         return $query->fetchAll();
     }
 
@@ -70,13 +73,12 @@ class Infrastructure
 
     private function fetchResourceArchetype($resourceId)
     {
-        $query = $this->db->prepare("SELECT * FROM infrastructure_resource WHERE id = ?;");
+        $query = $this->db->prepare("SELECT * FROM infrastructure_resources WHERE id = ?;");
         $query->execute([$resourceId]);
         return $query->fetchAll();
     }
 }
 
-session_start();
 
 if (!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true) {
     header("Location: login.php");
