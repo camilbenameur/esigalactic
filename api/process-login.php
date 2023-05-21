@@ -12,18 +12,18 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
  $rows = $query->fetchAll();
  if(count($rows)>0){
     session_start();
-    echo "Identifiants corrects";
-    $_SESSION["player_id"] = $rows["id"];
-    $query = $db->prepare("SELECT (deuterium, metal, energy) FROM wallet WHERE player_id = ?;");
-    $query->execute([$_SESSION["player_id"]]);
-    $rows = $query->fetchAll();
     $_SESSION["connected"] = true;
+    $_SESSION["player_id"] = $rows[0]["id"];
     $_SESSION["universe"] = $_POST['universe-choice'];
     $_SESSION["galaxy-choice"] = 1;
     $_SESSION["solar-system-choice"] = 1;
-    $_SESSION["deuterium"] = $rows["deuterium"];
-    $_SESSION["metal"] = $rows["metal"];
-    $_SESSION["energy"] = $rows["energy"];
+    echo "Identifiants corrects";
+    $query = $db->prepare("SELECT * FROM wallet WHERE player_id = ?;");
+    $query->execute([$_SESSION["player_id"]]);
+    $rows = $query->fetchAll();
+    $_SESSION["deuterium"] = $rows[0]["deuterium"];
+    $_SESSION["metal"] = $rows[0]["metal"];
+    $_SESSION["energy"] = $rows[0]["energy"];
     header("Location:../front/galaxy.php");
 }
  else {

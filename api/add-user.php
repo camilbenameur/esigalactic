@@ -18,6 +18,8 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     else {
         $query = $db->prepare("INSERT INTO player (id, name, password, mail) VALUES (NULL, ?, ?, ?) ;");
         if ($query->execute([$name, $hash_password, $mail])) {
+            $query = $db->prepare("INSERT INTO wallet (id, player_id) VALUES (NULL, ?) ;");
+            $query->execute([$db->lastInsertId()]);
             echo "Les données ont été ajoutées avec succès.";
             header("Location:../front/login.php");
         } 
