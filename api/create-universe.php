@@ -120,7 +120,7 @@ class GalacticCreator
                 $rows = $query->fetchAll();
 
                 $liste = range(1, 10);
-                $taille = rand(1, 10);
+                $taille = rand(4, 10);
                 shuffle($liste);
                 $liste = array_slice($liste, 0, $taille);
                 sort($liste);
