@@ -11,18 +11,26 @@ async function enhanceInfrastructure(selectedArchetypeId, level) {
 let url = 'http://esigalactic/api/infrastructure-displayAPI.php';
 let facilityDisplay = document.getElementById('facility-display');
 let infrastructurePicture = document.getElementById('infrastructure-pic');
+let metalDisplay = document.getElementById('metal-display');
+let deuteriumDisplay = document.getElementById('deuterium-display');
+let energyDisplay = document.getElementById('energy-display');
 
-async function fetchWalletData() {
+async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
     const walletData = await walletAnswer.json();
     
     const metal = walletData[0].metal;
     const deuterium = walletData[0].deuterium;
     const energy = walletData[0].energy;
+
+    metalDisplay.innerHTML = "Metal : " + metal;
+    deuteriumDisplay.innerHTML = "Deuterium : " + deuterium;
+    energyDisplay.innerHTML = "Energy : " + energy;
 }
 
 
 async function update(selectedValue) {
+    updateWalletData();
     const archetypeId = selectedValue
     facilityDisplay.innerHTML = '';
     const answer = await fetch(url + '?archetype-choice=' + archetypeId);

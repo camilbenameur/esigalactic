@@ -49,9 +49,9 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
     <div class="balance" id="balance">   
         <span>
             <p><h3>Balance</h3></p>
-            <p>metal : 1500</p>
-            <p>deuterium : 50</p>
-            <p>energy : 100</p>
+            <p id="metal-display"></p>
+            <p id="deuterium-display"></p>
+            <p id="energy-display"></p>
         </span>
     </div>
     <script src="../js/infrastructure.js"></script>
