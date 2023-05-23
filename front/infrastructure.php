@@ -45,6 +45,15 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
     <div class="display-picture">
         <img id='infrastructure-pic' width=400px height=250px draggable="false" alt="building">
     </div>
+
+    <div class="balance" id="balance">   
+        <span>
+            <p><h3>Balance</h3></p>
+            <p>metal : 1500</p>
+            <p>deuterium : 50</p>
+            <p>energy : 100</p>
+        </span>
+    </div>
     <script src="../js/infrastructure.js"></script>
 </body>
 </html>
