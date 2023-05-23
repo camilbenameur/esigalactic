@@ -67,7 +67,7 @@ form{
     background-color: transparent;
     border: 2px solid rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
-    top: 15vh;
+    top: 29vh;
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -136,7 +136,7 @@ select{
     position: absolute;
     right: 5vw;
     transform: calc(5%);
-    top:25vh;
+    top:29vh;
     background-color: transparent;
     border: 2px solid rgba(255,255,255,0.5);
     backdrop-filter: blur(10px);
@@ -151,4 +151,27 @@ select{
 #facility-pic:hover{
     transition: 500ms;
     filter: blur(1px);
+}
+
+.balance{
+    position: absolute;
+    top: 15vh;
+    color:white;
+    background-color: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    left: 35vw;
+    transform: calc(35%);
+}
+
+.balance span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.balance p {
+    margin: 10px;
 }
