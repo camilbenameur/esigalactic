@@ -37,23 +37,15 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
                 }   
                 echo "<script>document.getElementById('".$rows[0]["name"]."').checked = true;</script>";
             ?>
-            <script src="../js/infrastructure.js"></script>
-            <input type="submit" value="Submit">
         </form>
     </div>
-    <div class="infrastructure-display">
-            <div class="facility-display">
-                <p>laboratory</p>
-                <p>current level : 10</p>
-                <p>metal : 500</p>
-                <p>energy : 300</p>
-                <p>deuterium : 1k</p>
-                <p>time : 2 days</p>
+    <div class="infrastructure-display" id="infrastructure-display">
+            <div class="facility-display" id="facility-display">
             </div>
-            <input type="submit" value="BUILD" method="get">  
     </div>
     <div class="display-picture">
         <img id="facility-pic" width=400px height=250px draggable="false" src="../images/infrastructures/artillery.jpg" alt="building">
     </div>
+    <script src="../js/infrastructure.js"></script>
 </body>
 </html>
