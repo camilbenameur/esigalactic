@@ -28,7 +28,7 @@ class Infrastructure
             } elseif ($infrastructureArchetype["facility_id"]) {
                 $facilityArchetype = $this->fetchFacilityArchetype($infrastructureArchetype["facility_id"]);
             } elseif ($infrastructureArchetype["resource_id"]) {
-                $resourceArchetype = $this->fetchResourceArchetype($infrastructureArchetype["resource_id"]);
+                $resourceArchetype = $this->fetchResourcesArchetype($infrastructureArchetype["resource_id"]);
             }
         }
 
@@ -71,7 +71,7 @@ class Infrastructure
         return $query->fetchAll();
     }
 
-    private function fetchResourceArchetype($resourceId)
+    private function fetchResourcesArchetype($resourceId)
     {
         $query = $this->db->prepare("SELECT * FROM infrastructure_resources WHERE id = ?;");
         $query->execute([$resourceId]);
