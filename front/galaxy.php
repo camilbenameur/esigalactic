@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
 {
-    header("Location:login.html");
+    header("Location:login.php");
 }
 ?>
 
@@ -23,10 +23,9 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
         <source src="../video/galaxy-screen.mp4"/>
     </video>
     <div class="gradient"></div>
-    <form id="choice-form" class="choice" >
+    <form id="choice-form" class="choice" method="get">
         <p>Galaxy</p>
         <select id="galaxy-choice" name="galaxy-choice" class="location-choice">
-            
             <?php
                 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
                 $query = $db->prepare("SELECT id, name FROM galaxy WHERE ? = universe_id;");
@@ -36,14 +35,10 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
                 {
                     echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
                 }
-            ?>
-            
-            
+            ?>   
         </select>
         <p>Solar system</p>
-        <select id="solar-system-choice" name="solar-system-choice" class="location-choice">    
-            
-                
+        <select id="solar-system-choice" name="solar-system-choice" class="location-choice">        
             <?php 
                 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
                 $query = $db->prepare("SELECT id, name FROM solar_system WHERE ? = galaxy_id;");
@@ -54,11 +49,10 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
                     echo "<option value='".$row["id"]."'>".$row["name"]."</option>";
                 }
             ?>
-            
         </select>
     </form>
     <div class="disconnect-button">
-        <form id="choice-form" action="../api/disconnect.php" method="post">
+        <form id="choice-form" action="../api/process-logout.php" method="post">
             <input id="disconnect" type="submit" value="Disconnect">
         </form>
     </div>
