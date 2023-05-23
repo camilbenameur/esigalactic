@@ -3,17 +3,14 @@ function handleArchetypeChange(radio) {
     update(selectedValue);
 }
 
-function build(selectedArchetypeId) {
-    console.log("Build");
-}
-
-function upgrade(selectedArchetypeId) {
-    console.log("Upgrade");
+async function enhanceInfrastructure(selectedArchetypeId, level) {
+    fetch('http://esigalactic/api/infrastructure-buildAPI.php?archetype-choice=' + selectedArchetypeId + '&infrastructure-level=' + level);
+    update(selectedArchetypeId);
 }
 
 let url = 'http://esigalactic/api/infrastructure-displayAPI.php';
 let facilityDisplay = document.getElementById('facility-display');
-console.log(facilityDisplay);
+let infrastructurePicture = document.getElementById('infrastructure-pic');
 
 async function fetchWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
@@ -27,10 +24,10 @@ async function fetchWalletData() {
 
 async function update(selectedValue) {
     const archetypeId = selectedValue
-    console.log("Archetype ID : " + archetypeId);
     facilityDisplay.innerHTML = '';
     const answer = await fetch(url + '?archetype-choice=' + archetypeId);
     const data = await answer.json();
+    console.log(data);
 
     const infrastructureArchetype = data.infrastructureArchetype.archetype;
     const name = infrastructureArchetype.name;
@@ -65,11 +62,44 @@ async function update(selectedValue) {
     facilityDisplay.appendChild(infrastructureEnergyCost);
     facilityDisplay.appendChild(infrastructureBuildingTime);
 
+    const defenceArchetype = data.infrastructureArchetype.defence;
+    const resourceArchetype = data.infrastructureArchetype.resource;
+    const facilityArchetype = data.infrastructureArchetype.facility;
+
+    console.log(infrastructurePicture);
+
+    if(defenceArchetype != null) {
+        const attackValue = defenceArchetype[0].offence_value;
+        const defenceValue = defenceArchetype[0].defence_value;    
+        const defenceValueDisplay = document.createElement('p');
+        defenceValueDisplay.innerHTML = "Defence Value : " + defenceValue;
+        facilityDisplay.appendChild(defenceValueDisplay);
+
+        const attackValueDisplay = document.createElement('p');
+        attackValueDisplay.innerHTML = "Attack Value : " + attackValue;
+        facilityDisplay.appendChild(attackValueDisplay);
+
+        infrastructurePicture.src = "../images/infrastructures/artillery.jpg";
+
+    }
+    else if(resourceArchetype != null) {
+        const productionRate = resourceArchetype[0].production_rate;
+        const productionRateDisplay = document.createElement('p');
+        productionRateDisplay.innerHTML = "Production Rate : " + productionRate;
+        facilityDisplay.appendChild(productionRateDisplay);
+
+        infrastructurePicture.src = "../images/infrastructures/lab.jpg";
+
+    }
+    else if(facilityArchetype != null) {
+        infrastructurePicture.src = "../images/infrastructures/lab.jpg";
+    }
+
     if(level == 0) {
         const buildButton = document.createElement('button');
         buildButton.innerHTML = "BUILD";
         buildButton.addEventListener('click', function() {
-            build(archetypeId);
+            enhanceInfrastructure(archetypeId, level);
         });
         facilityDisplay.appendChild(buildButton);
     }
@@ -77,7 +107,7 @@ async function update(selectedValue) {
         const upgradeButton = document.createElement('button');
         upgradeButton.innerHTML = "UPGRADE";
         upgradeButton.addEventListener('click', function() {
-            upgrade(archetypeId);
+            enhanceInfrastructure(archetypeId, level);
         });
         facilityDisplay.appendChild(upgradeButton);
     }
