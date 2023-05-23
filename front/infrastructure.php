@@ -40,11 +40,10 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
         </form>
     </div>
     <div class="infrastructure-display" id="infrastructure-display">
-            <div class="facility-display" id="facility-display">
-            </div>
+        <div class="facility-display" id="facility-display"></div>
     </div>
     <div class="display-picture">
-        <img id="facility-pic" width=400px height=250px draggable="false" src="../images/infrastructures/artillery.jpg" alt="building">
+        <img id='infrastructure-pic' width=400px height=250px draggable="false" alt="building">
     </div>
     <script src="../js/infrastructure.js"></script>
 </body>

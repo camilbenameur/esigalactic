@@ -43,7 +43,6 @@ class GalacticDatabase
     }
 }
 
-// Example usage:
 session_start();
 
 $galacticDatabase = new GalacticDatabase();
