@@ -79,6 +79,7 @@
 
         <p>planet</p>
         <select id="planet-choice" name="planet-choice" class="location-choice">
+            <script src="../js/fleet.js"></script> 
         </select>
     </form>
 
@@ -90,6 +91,8 @@
             <input id="colonize" type="submit" value="colonize">
         </form>
     </div>
+
+      
     
 </body>
 </html>
