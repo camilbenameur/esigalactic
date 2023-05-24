@@ -11,18 +11,26 @@ async function enhanceInfrastructure(selectedArchetypeId, level) {
 let url = 'http://esigalactic/api/infrastructure-displayAPI.php';
 let facilityDisplay = document.getElementById('facility-display');
 let infrastructurePicture = document.getElementById('infrastructure-pic');
+let metalDisplay = document.getElementById('metal-display');
+let deuteriumDisplay = document.getElementById('deuterium-display');
+let energyDisplay = document.getElementById('energy-display');
 
-async function fetchWalletData() {
+async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
     const walletData = await walletAnswer.json();
     
     const metal = walletData[0].metal;
     const deuterium = walletData[0].deuterium;
     const energy = walletData[0].energy;
+
+    metalDisplay.innerHTML = "Metal : " + metal;
+    deuteriumDisplay.innerHTML = "Deuterium : " + deuterium;
+    energyDisplay.innerHTML = "Energy : " + energy;
 }
 
 
 async function update(selectedValue) {
+    updateWalletData();
     const archetypeId = selectedValue
     facilityDisplay.innerHTML = '';
     const answer = await fetch(url + '?archetype-choice=' + archetypeId);
@@ -66,7 +74,6 @@ async function update(selectedValue) {
     const resourceArchetype = data.infrastructureArchetype.resource;
     const facilityArchetype = data.infrastructureArchetype.facility;
 
-    console.log(infrastructurePicture);
 
     if(defenceArchetype != null) {
         const attackValue = defenceArchetype[0].offence_value;
@@ -79,8 +86,19 @@ async function update(selectedValue) {
         attackValueDisplay.innerHTML = "Attack Value : " + attackValue;
         facilityDisplay.appendChild(attackValueDisplay);
 
-        infrastructurePicture.src = "../images/infrastructures/artillery.jpg";
-
+        switch(infrastructureArchetype.name) {
+            case "Laser artillery":
+                infrastructurePicture.src = "../images/infrastructures/artillery.jpg";
+                break;
+            case "Ion cannon":
+                infrastructurePicture.src = "../images/infrastructures/laser.jpg";
+                break;
+            case "Shield":
+                infrastructurePicture.src = "../images/infrastructures/shield.jpg";
+                break;
+            default:
+                break;
+        }
     }
     else if(resourceArchetype != null) {
         const productionRate = resourceArchetype[0].production_rate;
@@ -88,11 +106,36 @@ async function update(selectedValue) {
         productionRateDisplay.innerHTML = "Production Rate : " + productionRate;
         facilityDisplay.appendChild(productionRateDisplay);
 
-        infrastructurePicture.src = "../images/infrastructures/lab.jpg";
-
+        switch(infrastructureArchetype.name) {
+            case "Metal mine":
+                infrastructurePicture.src = "../images/infrastructures/metal-mine.jpg";
+                break;
+            case "Deuterium synthesizer":
+                infrastructurePicture.src = "../images/infrastructures/deuterium.jpg";
+                break;
+            case "Solar plant":
+                infrastructurePicture.src = "../images/infrastructures/solar-plant.jpg";
+                break;
+            case "Fusion plant":
+                infrastructurePicture.src = "../images/infrastructures/solar-fusion.jpg";
+            default:
+                break;
+        }
     }
     else if(facilityArchetype != null) {
-        infrastructurePicture.src = "../images/infrastructures/lab.jpg";
+        switch(infrastructureArchetype.name) {
+            case "Research lab":
+                infrastructurePicture.src = "../images/infrastructures/lab.jpg";
+                break;
+            case "Shipyard":
+                infrastructurePicture.src = "../images/infrastructures/shipyard.jpg";
+                break;
+            case "Nanite factory":
+                infrastructurePicture.src = "../images/infrastructures/nanite-factory.jpg";
+                break;
+            default:
+                break;
+        }
     }
 
     if(level == 0) {
