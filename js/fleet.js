@@ -1,9 +1,11 @@
 class FleetAPI {
-    constructor(url, galaxyChoiceId, solarSystemChoiceId, planetChoiceId) {
+    constructor(url, url2, galaxyChoiceId, solarSystemChoiceId, planetChoiceId, planetDisplayId) {
       this.url = url;
+      this.url2 = url2;
       this.galaxyChoice = document.getElementById(galaxyChoiceId);
       this.solarSystemChoice = document.getElementById(solarSystemChoiceId);
       this.planetChoice = document.getElementById(planetChoiceId);
+      this.planetDisplay = document.getElementById(planetDisplayId);
   
       this.update = this.update.bind(this);
       this.solarSystemChoice.addEventListener('change', this.update);
@@ -26,7 +28,6 @@ class FleetAPI {
           const name = element.name;
           const planetOption = document.createElement('option');
           planetOption.text = name;
-  
           this.planetChoice.add(planetOption);
         });
       });
@@ -37,20 +38,9 @@ class FleetAPI {
     }
   }
   
-  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice');
+  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/fleetAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-display');
   fleetAPI.init();
   
-
-
-
-
-
-
-
-
-
-
-
 
 /*let planetChoice = document.getElementById("planet-choice");
 
