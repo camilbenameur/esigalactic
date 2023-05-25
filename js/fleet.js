@@ -1,6 +1,7 @@
 class FleetAPI {
-    constructor(url, galaxyChoiceId, solarSystemChoiceId, planetChoiceId, planetDisplayId) {
+    constructor(url, url2, galaxyChoiceId, solarSystemChoiceId, planetChoiceId, planetDisplayId) {
       this.url = url;
+      this.url2 = url2;
       this.galaxyChoice = document.getElementById(galaxyChoiceId);
       this.solarSystemChoice = document.getElementById(solarSystemChoiceId);
       this.planetChoice = document.getElementById(planetChoiceId);
@@ -37,7 +38,7 @@ class FleetAPI {
     }
   }
   
-  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-display');
+  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/fleetAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-display');
   fleetAPI.init();
   
 
