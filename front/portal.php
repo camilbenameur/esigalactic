@@ -43,5 +43,11 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             <input type="submit" name="page" value="admin">
         </form>
     </div>
+
+    <div class="disconnect-button">
+        <form id="choice-form" action="../api/process-logout.php" method="post">
+            <input id="disconnect" type="submit" value="Disconnect">
+        </form>
+    </div>
 </body>
 </html>

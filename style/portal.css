@@ -56,7 +56,7 @@ body{
 }
 
 input[type="submit"] {
-    width: 60%;
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -74,6 +74,27 @@ input[type="submit"]:hover{
     transition: 500ms;
 }
 
+.disconnect-button{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 40vh;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255,255,255,0.5);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disconnect-button:hover{
+    border: 2px solid #0eaad1;
+    box-shadow: 0 0 5px #ca1d1d, 0 0 20px #ca1d1d, 0 0 40px #ca1d1d, 0 0 60px #ca1d1d; 
+    z-index: 1;
+    transition: 500ms;
+}
 
 .banner {
     position: absolute;

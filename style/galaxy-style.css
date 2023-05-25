@@ -136,3 +136,10 @@ input[type="submit"]:hover{
     padding: 10px;
     border-radius: 5px;
 }
+
+.disconnect-button:hover{
+    border: 2px solid #0eaad1;
+    box-shadow: 0 0 5px #ca1d1d, 0 0 20px #ca1d1d, 0 0 40px #ca1d1d, 0 0 60px #ca1d1d; 
+    z-index: 1;
+    transition: 500ms;
+}
