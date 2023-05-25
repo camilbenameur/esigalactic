@@ -70,6 +70,6 @@
             <li>D</li>
         </ul>
     </div>
-    
+    <script src="../js/space-yard.js"></script>
 </body>
 </html>
