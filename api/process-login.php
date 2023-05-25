@@ -66,7 +66,7 @@ class Authentication
             $this->sessionManager->set("deuterium", $walletRows[0]["deuterium"]);
             $this->sessionManager->set("metal", $walletRows[0]["metal"]);
             $this->sessionManager->set("energy", $walletRows[0]["energy"]);
-            header("Location:../front/galaxy.php");
+            header("Location:../front/portal.php");
         } else {
             echo "Identifiants incorrects";
             header("Location:../front/login.php");
