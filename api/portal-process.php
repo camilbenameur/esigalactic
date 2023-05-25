@@ -12,8 +12,8 @@ if (isset($_POST['page'])) {
             header("Location: ../front/infrastructure.php");
             break;
         case 'Space yard':
-            //page pas encore existante
-            header("Location: ../front/portal.php");
+            
+            header("Location: ../front/space-yard.php");
             break;
         case 'Research lab':
             //page pas encore existante
