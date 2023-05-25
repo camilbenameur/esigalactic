@@ -81,9 +81,9 @@ input[type="submit"]:hover{
 
 .balance{
     position: absolute;
-    bottom: 3vh;
-    left: 20%;
-    transform: translate(-20%);
+    bottom: 10vh;
+    left: 50%;
+    transform: translate(-50%);
     color:white;
     background-color: transparent;
     border: 2px solid rgba(255,255,255,0.5);
