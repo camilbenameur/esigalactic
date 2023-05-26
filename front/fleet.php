@@ -79,7 +79,7 @@
 
         <p>planet</p>
         <select id="planet-choice" name="planet-choice" class="location-choice">
-            <script src="../js/fleet.js"></script> 
+            
         </select>
     </form>
 
@@ -93,6 +93,11 @@
     </div>
 
       
-    
+    <div class="display-planet" id="planet-info">
+
+                
+    </div>
+
+    <script src="../js/fleet.js"></script> 
 </body>
 </html>
