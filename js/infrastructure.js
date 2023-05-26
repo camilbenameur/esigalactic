@@ -18,6 +18,8 @@ let energyDisplay = document.getElementById('energy-display');
 async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
     const walletData = await walletAnswer.json();
+
+    console.log(walletData);
     
     const metal = walletData[0].metal;
     const deuterium = walletData[0].deuterium;
@@ -37,30 +39,41 @@ async function update(selectedValue) {
     const data = await answer.json();
     console.log(data);
 
-    const infrastructureArchetype = data.infrastructureArchetype.archetype;
-    const name = infrastructureArchetype.name;
-    const building_time = infrastructureArchetype.building_time;
-    const energy_cost = infrastructureArchetype.energy_cost;
-    const metal_cost = infrastructureArchetype.metal_cost;
-    const deuterium_cost = infrastructureArchetype.deuterium_cost;
-
     if(data.infrastructure[0] == undefined) {
         var level = 0;
     } else {
         var level = data.infrastructure[0].level;
     }
 
+    const infrastructureArchetype = data.infrastructureArchetype.archetype;
+    const name = infrastructureArchetype.name;
+    let building_time = infrastructureArchetype.building_time;
+    let energy_cost = infrastructureArchetype.energy_cost;
+    let metal_cost = infrastructureArchetype.metal_cost;
+    let deuterium_cost = infrastructureArchetype.deuterium_cost;
+
+    building_time *= Math.pow(2, level);
+
+    energy_cost *= Math.pow(1.6, level);
+    metal_cost *= Math.pow(1.6, level);
+    deuterium_cost *= Math.pow(1.6, level);
+
+    energy_cost = Math.round(energy_cost);
+    metal_cost = Math.round(metal_cost);
+    deuterium_cost = Math.round(deuterium_cost);
+
     const infrastructureName = document.createElement('p');
-    infrastructureName.innerHTML = name;
     const infrastructureLevel = document.createElement('p');
-    infrastructureLevel.innerHTML = "Level : " + level;
     const infrastructureMetalCost = document.createElement('p');
-    infrastructureMetalCost.innerHTML = "Metal Cost : " + metal_cost;
     const infrastructureDeuteriumCost = document.createElement('p');
-    infrastructureDeuteriumCost.innerHTML = "Deuterium Cost : " + deuterium_cost;
     const infrastructureEnergyCost = document.createElement('p');
-    infrastructureEnergyCost.innerHTML = "Energy Cost : " + energy_cost;
     const infrastructureBuildingTime = document.createElement('p');
+
+    infrastructureName.innerHTML = name;
+    infrastructureLevel.innerHTML = "Level : " + level;
+    infrastructureMetalCost.innerHTML = "Metal Cost : " + metal_cost;
+    infrastructureDeuteriumCost.innerHTML = "Deuterium Cost : " + deuterium_cost;
+    infrastructureEnergyCost.innerHTML = "Energy Cost : " + energy_cost;
     infrastructureBuildingTime.innerHTML = "Building Time : " + building_time + " sec";
 
     facilityDisplay.appendChild(infrastructureName);
@@ -74,53 +87,58 @@ async function update(selectedValue) {
     const resourceArchetype = data.infrastructureArchetype.resource;
     const facilityArchetype = data.infrastructureArchetype.facility;
 
-
     if(defenceArchetype != null) {
-        const attackValue = defenceArchetype[0].offence_value;
-        const defenceValue = defenceArchetype[0].defence_value;    
+        let attackValue = defenceArchetype[0].offence_value;
+        let defenceValue = defenceArchetype[0].defence_value;    
         const defenceValueDisplay = document.createElement('p');
-        defenceValueDisplay.innerHTML = "Defence Value : " + defenceValue;
-        facilityDisplay.appendChild(defenceValueDisplay);
-
         const attackValueDisplay = document.createElement('p');
-        attackValueDisplay.innerHTML = "Attack Value : " + attackValue;
-        facilityDisplay.appendChild(attackValueDisplay);
 
         switch(infrastructureArchetype.name) {
             case "Laser artillery":
-                infrastructurePicture.src = "../images/infrastructures/artillery.jpg";
+                infrastructurePicture.src = "../images/infrastructures/laser.jpg";
+                attackValue *= Math.pow(1.05, level);
                 break;
             case "Ion cannon":
-                infrastructurePicture.src = "../images/infrastructures/laser.jpg";
+                infrastructurePicture.src = "../images/infrastructures/artillery.jpg";
+                attackValue *= Math.pow(1.05, level);
                 break;
             case "Shield":
                 infrastructurePicture.src = "../images/infrastructures/shield.jpg";
+                defenceValue *= Math.pow(1.3, level);
                 break;
             default:
                 break;
         }
+        attackValueDisplay.innerHTML = "Attack Value : " + attackValue;
+        defenceValueDisplay.innerHTML = "Defence Value : " + defenceValue;
+        facilityDisplay.appendChild(attackValueDisplay);
+        facilityDisplay.appendChild(defenceValueDisplay);
     }
     else if(resourceArchetype != null) {
-        const productionRate = resourceArchetype[0].production_rate;
+        let productionRate = resourceArchetype[0].production_rate;
         const productionRateDisplay = document.createElement('p');
-        productionRateDisplay.innerHTML = "Production Rate : " + productionRate;
-        facilityDisplay.appendChild(productionRateDisplay);
 
         switch(infrastructureArchetype.name) {
             case "Metal mine":
                 infrastructurePicture.src = "../images/infrastructures/metal-mine.jpg";
+                productionRate *= Math.pow(1.5, level);
                 break;
             case "Deuterium synthesizer":
                 infrastructurePicture.src = "../images/infrastructures/deuterium.jpg";
+                productionRate *= Math.pow(1.3, level);
                 break;
             case "Solar plant":
                 infrastructurePicture.src = "../images/infrastructures/solar-plant.jpg";
+                productionRate *= Math.pow(1.4, level);
                 break;
             case "Fusion plant":
                 infrastructurePicture.src = "../images/infrastructures/solar-fusion.jpg";
+                productionRate *= Math.pow(2, level);
             default:
-                break;
+                break;   
         }
+        productionRateDisplay.innerHTML = "Production Rate : " + productionRate;
+        facilityDisplay.appendChild(productionRateDisplay);
     }
     else if(facilityArchetype != null) {
         switch(infrastructureArchetype.name) {
