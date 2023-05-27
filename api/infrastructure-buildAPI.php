@@ -2,13 +2,16 @@
 
 session_start();
 
-$archetype_id = $_GET["archetype-choice"];
-$planet_id = $_SESSION["planet_id"];
+$archetypeId = $_GET["archetype-choice"];
+$planetId = $_SESSION["planet-choice"];
+$universeId = $_SESSION["universe-choice"];
+$playerId = $_SESSION["player_id"];
+
 $infrastructureLevel = $_GET["infrastructure-level"];
 
 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
-$query = $db->prepare("SELECT * FROM wallet WHERE player_id = ?;");
-$query->execute([$_SESSION["player_id"]]);
+$query = $db->prepare("SELECT * FROM wallet WHERE player_id = ? AND universe_id = ?;");
+$query->execute([$playerId, $universeId]);
 $wallet = $query->fetchAll();
 
 $metal = $wallet[0]["metal"];
@@ -16,7 +19,7 @@ $deuterium = $wallet[0]["deuterium"];
 $energy = $wallet[0]["energy"];
 
 $query = $db->prepare("SELECT * FROM infrastructure_archetype WHERE id = ?;");
-$query->execute([$archetype_id]);
+$query->execute([$archetypeId]);
 $archetype = $query->fetchAll();
 
 $metal_cost = $archetype[0]["metal_cost"];
@@ -29,11 +32,11 @@ if ($infrastructureLevel == 0) {
         $deuterium = $deuterium - $deuterium_cost;
         $energy = $energy - $energy_cost;
 
-        $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ?;");
-        $query->execute([$metal, $deuterium, $energy, $_SESSION["player_id"]]);
+        $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ? AND universe_id = ?;");
+        $query->execute([$metal, $deuterium, $energy, $playerId, $universeId]);
 
         $query = $db->prepare("INSERT INTO infrastructure (planet_id, archetype_id, level) VALUES (?, ?, ?);");
-        $query->execute([$planet_id, $archetype_id, 1]);
+        $query->execute([$planetId, $archetypeId, 1]);
 
         echo json_encode(["success" => true]);
     } else {
@@ -50,11 +53,11 @@ if ($infrastructureLevel == 0) {
         $energy = $energy - $energy_cost;
         $infrastructureLevel++;
 
-        $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ?;");
-        $query->execute([$metal, $deuterium, $energy, $_SESSION["player_id"]]);
-
+        $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ? AND universe_id = ?;");
+        $query->execute([$metal, $deuterium, $energy, $playerId, $universeId]);
+        
         $query = $db->prepare("UPDATE infrastructure SET level = ? WHERE planet_id = ? AND archetype_id = ?;");
-        $query->execute([$infrastructureLevel, $planet_id, $archetype_id]);
+        $query->execute([$infrastructureLevel, $planetId, $archetypeId]);
 
         echo json_encode(["success" => true]);
     } else {
