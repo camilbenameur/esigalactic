@@ -109,6 +109,8 @@ async function update(selectedValue) {
             default:
                 break;
         }
+        attackValue = Math.round(attackValue);
+        defenceValue = Math.round(defenceValue);
         attackValueDisplay.innerHTML = "Attack Value : " + attackValue;
         defenceValueDisplay.innerHTML = "Defence Value : " + defenceValue;
         facilityDisplay.appendChild(attackValueDisplay);
@@ -137,6 +139,7 @@ async function update(selectedValue) {
             default:
                 break;   
         }
+        productionRate = Math.round(productionRate);
         productionRateDisplay.innerHTML = "Production Rate : " + productionRate;
         facilityDisplay.appendChild(productionRateDisplay);
     }
