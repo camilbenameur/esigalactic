@@ -18,9 +18,14 @@ if(isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     else {
         $query = $db->prepare("INSERT INTO player (id, name, password, mail) VALUES (NULL, ?, ?, ?) ;");
         if ($query->execute([$name, $hash_password, $mail])) {
-            $query = $db->prepare("INSERT INTO wallet (id, player_id) VALUES (NULL, ?) ;");
-            $query->execute([$db->lastInsertId()]);
-            echo "Les données ont été ajoutées avec succès.";
+            $playerId = $db->lastInsertId();
+            $query = $db->prepare("SELECT id FROM universe;");
+            $query->execute();
+            $rows = $query->fetchAll();
+            foreach($rows as $row) {
+                $query = $db->prepare("INSERT INTO wallet (id, player_id, universe_id) VALUES (NULL, ?, ?) ;");
+                $query->execute([$playerId, $row['id']]);
+            }
             header("Location:../front/login.php");
         } 
         else {

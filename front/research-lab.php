@@ -24,33 +24,36 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
 
     <div class="technology researched" id="energy">
         <p>Energy</p>
-        <p>Level : 1</p>
-        <input type="submit" name="energy" value="upgrade">
+        <p id="energy-tech-level"></p>
     </div>
 
     
     <div class="technology blocked" id="laser">
-        <p>laser</p>
-        <p>Level : 1</p>
-        <input type="submit" name="energy" value="upgrade">
+        <p>Laser</p>
+        <p id="laser-tech-level"></p>
     </div>
 
-    <div class="technology blocked" id="ions">
-        <p>Ions</p>
-        <p>Level : 1</p>
-        <input type="submit" name="energy" value="upgrade">
+    <div class="technology blocked" id="ion">
+        <p>Ion</p>
+        <p id="ion-tech-level"></p>
     </div>
 
     <div class="technology blocked" id="shield">
         <p>Shield</p>
-        <p>Level : 1</p>
-        <input type="submit" name="energy" value="upgrade">
+        <p id="shield-tech-level"></p>
     </div>
 
-    <div class="technology blocked" id="armament">
-        <p>Armament</p>
-        <p>Level : 1</p>
-        <input type="submit" name="energy" value="upgrade">
+    <div class="technology blocked" id="weaponry">
+        <p>Weaponry</p>
+        <p id="weaponry-tech-level"></p>
+    </div>
+
+    <div class="technology blocked" id="display">
+        <p>Click on a tech</p>
+        <p>Metal cost : ?</p>
+        <p>Deuterium cost : ?</p>
+        <p>Research time : ?</p>
+        <input type="button" name="energy" value="upgrade">
     </div>
 
     <img id="arrow-1" draggable="false" width=272px height=272px src="../images/research-lab/arrow.png" alt="arrow">
@@ -59,6 +62,6 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <img id="arrow-4" draggable="false" width=272px height=272px src="../images/research-lab/arrow.png" alt="arrow">
 
 
-    
+    <script src="../js/technology.js"></script>    
 </body>
 </html>

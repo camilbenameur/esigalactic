@@ -17,10 +17,10 @@ class Database
         return $query->fetchAll();
     }
 
-    public function getWallet($playerId)
+    public function getWallet($playerId, $universeId)
     {
-        $query = $this->db->prepare("SELECT * FROM wallet WHERE player_id = ?;");
-        $query->execute([$playerId]);
+        $query = $this->db->prepare("SELECT * FROM wallet WHERE player_id = ? AND universe_id = ?;");
+        $query->execute([$playerId, $universeId]);
         return $query->fetchAll();
     }
 }
@@ -57,12 +57,14 @@ class Authentication
             $this->sessionManager->start();
             $this->sessionManager->set("connected", true);
             $this->sessionManager->set("player_id", $rows[0]["id"]);
-            $this->sessionManager->set("universe", $_POST['universe-choice']);
+            $this->sessionManager->set("universe-choice", $_POST['universe-choice']);
             $this->sessionManager->set("galaxy-choice", 1);
             $this->sessionManager->set("solar-system-choice", 1);
             $this->sessionManager->set("planet-choice", 1);
             echo "Identifiants corrects";
-            $walletRows = $this->db->getWallet($_SESSION["player_id"]);
+            echo $_SESSION["player_id"];
+            echo $_SESSION["universe-choice"];
+            $walletRows = $this->db->getWallet($_SESSION["player_id"], $_SESSION["universe-choice"]);
             $this->sessionManager->set("deuterium", $walletRows[0]["deuterium"]);
             $this->sessionManager->set("metal", $walletRows[0]["metal"]);
             $this->sessionManager->set("energy", $walletRows[0]["energy"]);
