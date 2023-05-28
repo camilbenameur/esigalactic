@@ -22,7 +22,6 @@ let display = document.getElementById('display');
 function energyDisplay(energyTechnology, energyTechnologyLevel) {
     display.innerHTML = "";
     let name = document.createElement('p');
-    let metalCost = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
@@ -209,7 +208,6 @@ function weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel) {
             weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel);
         }
         update();
-        
     });
     
 }
@@ -252,10 +250,6 @@ async function update() {
         }
     });
     
-    console.log(energyTechnologyLevelValue);
-    console.log(weaponryTechnologyLevelValue);
-
-
     energyTechnologyLevel.innerHTML = "Level : " + energyTechnologyLevelValue;
     laserTechnologyLevel.innerHTML = "Level : " + laserTechnologyLevelValue;
     ionTechnologyLevel.innerHTML = "Level : " + ionTechnologyLevelValue;
@@ -264,6 +258,10 @@ async function update() {
 
     energyDiv.addEventListener('click', function() {
         energyDisplay(energyTechnology, energyTechnologyLevelValue);
+        energyDiv.removeEventListener('click', function() {
+            energyDisplay(energyTechnology, energyTechnologyLevelValue);
+        }
+        );
     });
 
     laserDiv.addEventListener('click', function() {
