@@ -266,22 +266,22 @@ async function update() {
         energyDiv.className = "technology blocked";
     } else {
         energyDiv.className = "technology researched";
-        arrow1.src = "../images/research-lab/arrow-green.jpg";
-        arrow4.src = "../images/research-lab/arrow-green.jpg";        
+        arrow1.src = "../images/research-lab/arrow-green.png";
+        arrow4.src = "../images/research-lab/arrow-green.png";        
     }
 
     if(laserTechnologyLevelValue == 0) {
         laserDiv.className = "technology blocked";
     } else {
         laserDiv.className = "technology researched";
-        arrow2.src = "../images/research-lab/arrow-green.jpg";
+        arrow2.src = "../images/research-lab/arrow-green.png";
     }
 
     if(ionTechnologyLevelValue == 0) {
         ionDiv.className = "technology blocked";
     } else {
         ionDiv.className = "technology researched";
-        arrow3.src = "../images/research-lab/arrow-green.jpg";
+        arrow3.src = "../images/research-lab/arrow-green.png";
     }
 
     if(shieldTechnologyLevelValue == 0) {

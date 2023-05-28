@@ -42,6 +42,13 @@ body{
     padding: 10px;
 }
 
+.technology:hover{
+    transition: 500ms;
+    cursor: pointer;
+    border: 2px solid rgba(19, 85, 229, 0.5);
+
+}
+
 #energy {
     top: 60vh;
     left: 50%;
@@ -139,4 +146,27 @@ input[type="button"]:hover{
     box-shadow: 0 0 5px #ca1d1d, 0 0 20px #ca1d1d, 0 0 40px #ca1d1d, 0 0 60px #ca1d1d; 
     z-index: 1;
     transition: 500ms;
+}
+
+.balance{
+    position: absolute;
+    top: 5px;
+    color:white;
+    background-color: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    left: 30%;
+    transform: translate(-30%);
+}
+
+.balance span{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.balance p {
+    margin: 10px;
 }
