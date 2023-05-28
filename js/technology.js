@@ -26,16 +26,12 @@ function energyDisplay(energyTechnology, energyTechnologyLevel) {
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
 
-  
-    energyTechnology.research_time *= Math.pow(2, energyTechnologyLevel);  
-    energyTechnology.deuterium_cost *= Math.pow(1.5, energyTechnologyLevel);
-
-    energyTechnology.research_time = Math.round(energyTechnology.research_time);
-    energyTechnology.deuterium_cost = Math.round(energyTechnology.deuterium_cost);
+    let currentDeuteriumCost = Math.round(energyTechnology.deuterium_cost * Math.pow(1.5, energyTechnologyLevel));
+    let currentResearchTime = Math.round(energyTechnology.research_time * Math.pow(2, energyTechnologyLevel));
 
     name.innerHTML = energyTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + energyTechnology.deuterium_cost;
-    researchTime.innerHTML = "Research time : " + energyTechnology.research_time;
+    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
+    researchTime.innerHTML = "Research time : " + currentResearchTime;
     upgradeButton.type = "button";
     upgradeButton.name = "energy";
     upgradeButton.value = "upgrade";
@@ -46,10 +42,10 @@ function energyDisplay(energyTechnology, energyTechnologyLevel) {
     display.appendChild(upgradeButton);
 
     upgradeButton.addEventListener('click', async function() {
-        const answ = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=energy" + "&level=" + energyTechnologyLevel)
-        const data = await answ.json();
+        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=energy" + "&level=" + energyTechnologyLevel);
+        const data = await response.json();
         
-        if(data == "success") {
+        if (data === "success") {
             energyTechnologyLevel++;
             energyDisplay(energyTechnology, energyTechnologyLevel);
         }
@@ -64,15 +60,12 @@ function laserDisplay(laserTechnology, laserTechnologyLevel) {
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
 
-    laserTechnology.deuterium_cost *= Math.pow(1.5, laserTechnologyLevel);
-    laserTechnology.research_time *= Math.pow(2, laserTechnologyLevel);
-
-    laserTechnology.deuterium_cost = Math.round(laserTechnology.deuterium_cost);
-    laserTechnology.research_time = Math.round(laserTechnology.research_time);
+    let currentDeuteriumCost = Math.round(laserTechnology.deuterium_cost * Math.pow(1.5, laserTechnologyLevel));
+    let currentResearchTime = Math.round(laserTechnology.research_time * Math.pow(2, laserTechnologyLevel));
 
     name.innerHTML = laserTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + laserTechnology.deuterium_cost;
-    researchTime.innerHTML = "Research time : " + laserTechnology.research_time;
+    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
+    researchTime.innerHTML = "Research time : " + currentResearchTime;
     upgradeButton.type = "button";
     upgradeButton.name = "laser";
     upgradeButton.value = "upgrade";
@@ -83,10 +76,10 @@ function laserDisplay(laserTechnology, laserTechnologyLevel) {
     display.appendChild(upgradeButton);
 
     upgradeButton.addEventListener('click', async function() {
-        const answ = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=laser" + "&level=" + laserTechnologyLevel)
-        const data = await answ.json();
+        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=laser" + "&level=" + laserTechnologyLevel);
+        const data = await response.json();
 
-        if(data == "success") {
+        if (data === "success") {
             laserTechnologyLevel++;
             laserDisplay(laserTechnology, laserTechnologyLevel);
         }
@@ -101,15 +94,12 @@ function ionDisplay(ionTechnology, ionTechnologyLevel) {
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
 
-    ionTechnology.deuterium_cost *= Math.pow(1.5, ionTechnologyLevel);
-    ionTechnology.research_time *= Math.pow(2, ionTechnologyLevel);
-
-    ionTechnology.deuterium_cost = Math.round(ionTechnology.deuterium_cost);
-    ionTechnology.research_time = Math.round(ionTechnology.research_time);
+    let currentDeuteriumCost = Math.round(ionTechnology.deuterium_cost * Math.pow(1.5, ionTechnologyLevel));
+    let currentResearchTime = Math.round(ionTechnology.research_time * Math.pow(2, ionTechnologyLevel));
 
     name.innerHTML = ionTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + ionTechnology.deuterium_cost;
-    researchTime.innerHTML = "Research time : " + ionTechnology.research_time;
+    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
+    researchTime.innerHTML = "Research time : " + currentResearchTime;
     upgradeButton.type = "button";
     upgradeButton.name = "ion";
     upgradeButton.value = "upgrade";
@@ -120,10 +110,10 @@ function ionDisplay(ionTechnology, ionTechnologyLevel) {
     display.appendChild(upgradeButton);
 
     upgradeButton.addEventListener('click', async function() {
-        const answ = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=ion" + "&level=" + ionTechnologyLevel)
-        const data = await answ.json();
+        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=ion" + "&level=" + ionTechnologyLevel);
+        const data = await response.json();
 
-        if(data == "success") {
+        if (data === "success") {
             ionTechnologyLevel++;
             ionDisplay(ionTechnology, ionTechnologyLevel);
         }
@@ -138,15 +128,12 @@ function shieldDisplay(shieldTechnology, shieldTechnologyLevel) {
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
 
-    shieldTechnology.deuterium_cost *= Math.pow(1.5, shieldTechnologyLevel);
-    shieldTechnology.research_time *= Math.pow(2, shieldTechnologyLevel);
-
-    shieldTechnology.deuterium_cost = Math.round(shieldTechnology.deuterium_cost);
-    shieldTechnology.research_time = Math.round(shieldTechnology.research_time);
+    let currentDeuteriumCost = Math.round(shieldTechnology.deuterium_cost * Math.pow(1.5, shieldTechnologyLevel));
+    let currentResearchTime = Math.round(shieldTechnology.research_time * Math.pow(2, shieldTechnologyLevel));
 
     name.innerHTML = shieldTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + shieldTechnology.deuterium_cost;
-    researchTime.innerHTML = "Research time : " + shieldTechnology.research_time;
+    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
+    researchTime.innerHTML = "Research time : " + currentResearchTime;
     upgradeButton.type = "button";
     upgradeButton.name = "shield";
     upgradeButton.value = "upgrade";
@@ -157,10 +144,10 @@ function shieldDisplay(shieldTechnology, shieldTechnologyLevel) {
     display.appendChild(upgradeButton);
 
     upgradeButton.addEventListener('click', async function() {
-        const answ = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=shield" + "&level=" + shieldTechnologyLevel)
-        const data = await answ.json();
+        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=shield" + "&level=" + shieldTechnologyLevel);
+        const data = await response.json();
 
-        if(data == "success") {
+        if (data === "success") {
             shieldTechnologyLevel++;
             shieldDisplay(shieldTechnology, shieldTechnologyLevel);
         }
@@ -176,18 +163,14 @@ function weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel) {
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
 
-    weaponryTechnology.metal_cost *= Math.pow(1.5, weaponryTechnologyLevel);
-    weaponryTechnology.deuterium_cost *= Math.pow(1.5, weaponryTechnologyLevel);
-    weaponryTechnology.research_time *= Math.pow(2, weaponryTechnologyLevel);
-
-    weaponryTechnology.research_time = Math.round(weaponryTechnology.research_time);
-    weaponryTechnology.metal_cost = Math.round(weaponryTechnology.metal_cost);
-    weaponryTechnology.deuterium_cost = Math.round(weaponryTechnology.deuterium_cost);
+    let currentMetalCost = Math.round(weaponryTechnology.metal_cost * Math.pow(1.5, weaponryTechnologyLevel));
+    let currentDeuteriumCost = Math.round(weaponryTechnology.deuterium_cost * Math.pow(1.5, weaponryTechnologyLevel));
+    let currentResearchTime = Math.round(weaponryTechnology.research_time * Math.pow(2, weaponryTechnologyLevel));
 
     name.innerHTML = weaponryTechnology.name;
-    metalCost.innerHTML = "Metal cost : " + weaponryTechnology.metal_cost;
-    deuteriumCost.innerHTML = "Deuterium cost : " + weaponryTechnology.deuterium_cost;
-    researchTime.innerHTML = "Research time : " + weaponryTechnology.research_time;
+    metalCost.innerHTML = "Metal cost : " + currentMetalCost;
+    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
+    researchTime.innerHTML = "Research time : " + currentResearchTime;
     upgradeButton.type = "button";
     upgradeButton.name = "weaponry";
     upgradeButton.value = "upgrade";
@@ -199,18 +182,17 @@ function weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel) {
     display.appendChild(upgradeButton);
 
     upgradeButton.addEventListener('click', async function() {
-        const answ = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=weaponry" + "&level=" + weaponryTechnologyLevel)
-        const data = await answ.json();
-        console.log(data);
+        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=weaponry" + "&level=" + weaponryTechnologyLevel);
+        const data = await response.json();
 
-        if(data == "success"){
+        if (data === "success") {
             weaponryTechnologyLevel++;
             weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel);
         }
         update();
     });
-    
 }
+
 
 async function update() {
     const answ = await fetch("http://esigalactic/api/technologies-displayAPI.php");
