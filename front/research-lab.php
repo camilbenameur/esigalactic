@@ -49,7 +49,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     </div>
 
     <div class="technology blocked" id="display">
-        <p>Select a tech</p>
+        <p>Click on a tech</p>
         <p>Metal cost : ?</p>
         <p>Deuterium cost : ?</p>
         <p>Research time : ?</p>
