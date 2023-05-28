@@ -61,7 +61,16 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <img id="arrow-3" draggable="false" width=272px height=272px src="../images/research-lab/arrow.png" alt="arrow">
     <img id="arrow-4" draggable="false" width=272px height=272px src="../images/research-lab/arrow.png" alt="arrow">
 
+    <div class="balance" id="balance">   
+        <span>
+            <p><h3>Balance</h3></p>
+            <p id="metal-display"></p>
+            <p id="deuterium-display"></p>
+            <p id="energy-display"></p>
+        </span>
+    </div>
 
-    <script src="../js/technology.js"></script>    
+    <script src="../js/technology.js"></script>  
+    <script src="../js/lab.js"></script>  
 </body>
 </html>
