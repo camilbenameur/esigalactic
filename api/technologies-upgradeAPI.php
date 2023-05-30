@@ -56,7 +56,7 @@ foreach($technologies as $technology){
 }
 
 if($researchLab != null && $metal >= $metal_cost && $deuterium >= $deuterium_cost ){
-    if($technologyName == "energy" || $technologyName == "weaponry" || ($technologyName == "shield" && ($energyTechnology != null || $ionTechnology != null)) || ($technologyName == "ion" && $laserTechnology != null) || ($technologyName == "laser" && $energyTechnology != null)) {
+    if($technologyName == "energy" || $technologyName == "weaponry" || ($technologyName == "shield" && ($energyTechnology["level"] >= 8 || $ionTechnology["level"] >= 2)) || ($technologyName == "ion" && $laserTechnology["level"] >= 5) || ($technologyName == "laser" && $energyTechnology["level"] >= 5)) {
         $metal -= $metal_cost;
         $deuterium -= $deuterium_cost;
         $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ? WHERE player_id = ? AND universe_id = ?;");
