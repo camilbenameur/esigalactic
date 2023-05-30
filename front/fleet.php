@@ -55,7 +55,7 @@
             <?php
                 $db = new PDO("mysql:host=localhost;dbname=esigalactic","root", "");
                 $query = $db->prepare("SELECT id, name FROM galaxy WHERE ? = universe_id;");
-                $query->execute([$_SESSION["universe"]]);
+                $query->execute([$_SESSION["universe-choice"]]);
                 $rows = $query->fetchAll();
                 foreach($rows as $row)
                 {
