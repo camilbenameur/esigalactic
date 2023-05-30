@@ -71,6 +71,5 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     </div>
 
     <script src="../js/technology.js"></script>  
-    <script src="../js/lab.js"></script>  
 </body>
 </html>
