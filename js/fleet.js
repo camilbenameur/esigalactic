@@ -14,6 +14,11 @@ class FleetAPI {
       this.cruiserQuantityDisplay = document.getElementById('cruiserNbr');
       this.transporterQuantityDisplay = document.getElementById('transporterNbr');
       this.coloniserQuantityDisplay = document.getElementById('colonizationNbr');
+
+      this.fighterInpt = document.getElementById("fighter-inpt");
+      this.cruiserInpt = document.getElementById("cruiser-inpt");
+      this.transporterInpt = document.getElementById("transporter-inpt");
+      this.colonizationInpt = document.getElementById("colonization-inpt");
     }
   
     async fetchData() {
@@ -30,7 +35,8 @@ class FleetAPI {
       const data = await response.json();
       return data;
     }
-  
+    
+
     update() {
       this.fetchData().then(data => {
         console.log(data);
@@ -70,6 +76,33 @@ class FleetAPI {
         this.cruiserQuantityDisplay.innerHTML = "cruiser : " + cruiserQuantity;
         this.transporterQuantityDisplay.innerHTML = "transporter : " + transporterQuantity;
         this.coloniserQuantityDisplay.innerHTML = "colonization ship : " + coloniserQuantity;
+
+
+        //max value for input type 'number'
+
+        this.fighterInpt.addEventListener("input", () =>{
+          if(parseInt(this.fighterInpt.value) > fighterQuantity){
+            this.fighterInpt.value = fighterQuantity;
+          }
+        });
+
+        this.cruiserInpt.addEventListener("input", () => {
+          if(parseInt(this.cruiserInpt.value) > cruiserQuantity){
+            this.cruiserInpt.value = cruiserQuantity;
+          }
+        });
+
+        this.transporterInpt.addEventListener("input", () => {
+          if(parseInt(this.transporterInpt.value) > transporterQuantity){
+            this.transporterInpt.value = transporterQuantity;
+          }
+        });
+
+        this.colonizationInpt.addEventListener("input", () => {
+          if(parseInt(this.colonizationInpt.value) > coloniserQuantity){
+            this.colonizationInpt.value = coloniserQuantity;
+          }
+        });
       })
     }
   
