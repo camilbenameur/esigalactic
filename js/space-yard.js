@@ -10,11 +10,29 @@ let cruiserQuantityDisplay = document.getElementById('cruiser-quantity');
 let transporterQuantityDisplay = document.getElementById('transporter-quantity');
 let coloniserQuantityDisplay = document.getElementById('coloniser-quantity');
 
-let shipsDisplay = document.querySelectorAll('.ship');
+let buildButtons = document.querySelectorAll('input[type="submit"]');
+let buildButtonsArray = Array.from(buildButtons);
 
-// shipsDisplay.forEach(ship => {
-//     ship.
-// });
+buildButtonsArray.forEach((element, index) => {
+    console.log(element);
+    element.addEventListener('click', () => {
+        switch (index) {
+            case 0:
+                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=1');
+                break;
+            case 1:
+                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=2');
+                break;
+            case 2:
+                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=3');
+                break;
+            case 3:
+                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=4');
+                break;
+        }
+        update();
+    });
+});
 
 
 async function updateWalletData() {
