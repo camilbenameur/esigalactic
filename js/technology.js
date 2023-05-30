@@ -265,29 +265,35 @@ async function update() {
 
     if(energyTechnologyLevelValue == 0) {
         energyDiv.className = "technology blocked";
-    } else if(energyTechnologyLevelValue == 5) {
-        arrow1.src = "../images/research-lab/arrow-green.png";
-    } else if(energyTechnologyLevelValue == 8) {
-        arrow4.src = "../images/research-lab/arrow-green.png";    
-    } else {
+    }  else {
         energyDiv.className = "technology researched";
     }
+    if(energyTechnologyLevelValue >= 5) {
+        arrow1.src = "../images/research-lab/arrow-green.png";
+    } 
+    if(energyTechnologyLevelValue >= 8) {
+        arrow4.src = "../images/research-lab/arrow-green.png";    
+    }
+      
 
     if(laserTechnologyLevelValue == 0) {
         laserDiv.className = "technology blocked";
-    } else if (laserTechnologyLevelValue == 5) {
-        arrow2.src = "../images/research-lab/arrow-green.png";
     } else {
-    laserDiv.className = "technology researched";
+        laserDiv.className = "technology researched";
     }
+    if (laserTechnologyLevelValue >= 5) {
+        arrow2.src = "../images/research-lab/arrow-green.png";
+    } 
+    
 
     if(ionTechnologyLevelValue == 0) {
         ionDiv.className = "technology blocked";
-    }  else if(ionTechnologyLevelValue == 2) {
-        arrow3.src = "../images/research-lab/arrow-green.png";
     } else {
         ionDiv.className = "technology researched";
     }
+    if(ionTechnologyLevelValue >= 2) {
+        arrow3.src = "../images/research-lab/arrow-green.png";
+    } 
 
     if(shieldTechnologyLevelValue == 0) {
         shieldDiv.className = "technology blocked";
