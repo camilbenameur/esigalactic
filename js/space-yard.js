@@ -12,9 +12,9 @@ let coloniserQuantityDisplay = document.getElementById('coloniser-quantity');
 
 let shipsDisplay = document.querySelectorAll('.ship');
 
-shipsDisplay.forEach(ship => {
-    ship.
-});
+// shipsDisplay.forEach(ship => {
+//     ship.
+// });
 
 
 async function updateWalletData() {
@@ -45,21 +45,17 @@ async function update() {
     let coloniserQuantity = 0;
 
     ships.forEach(element => {
-        if(element.archetype_id == 1) {
-            fighterQuantity = element.amount;
-        }
-        else if(element.archetype_id == 2) {
-            cruiserQuantity = element.amount;
-        }
-        else if(element.archetype_id == 3) {
-            transporterQuantity = element.amount;
-        }
-        else if(element.archetype_id == 4) {
-            coloniserQuantity = element.amount;
+        if (element.archetype_id == 1) {
+            fighterQuantity += parseInt(element.amount);
+        } else if (element.archetype_id == 2) {
+            cruiserQuantity += parseInt(element.amount);
+        } else if (element.archetype_id == 3) {
+            transporterQuantity += parseInt(element.amount);
+        } else if (element.archetype_id == 4) {
+            coloniserQuantity += parseInt(element.amount);
         }
     });
-
-
+    
     fighterQuantityDisplay.innerHTML = "Available : " + fighterQuantity;
     cruiserQuantityDisplay.innerHTML = "Available : " + cruiserQuantity;
     transporterQuantityDisplay.innerHTML = "Available : " + transporterQuantity;
