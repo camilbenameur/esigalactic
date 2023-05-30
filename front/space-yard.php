@@ -19,6 +19,7 @@
             <p>fighters</p>
             <p>Metal cost : 3000</p>
             <p>Deuterium cost : 500</p>
+            <p>Quantity : 0</p>
             <input type="submit" name="page" value="Build : 20 s">
         </div>
 
@@ -27,6 +28,7 @@
             <p>cruisers</p>
             <p>Metal cost : 20 000</p>
             <p>Deuterium cost : 5 000</p>
+            <p>Quantity : 0</p>
             <input type="submit" name="page" value="Build : 120 s">
         </div>
 
@@ -35,6 +37,7 @@
             <p>transporters</p>
             <p>Metal cost : 6 000</p>
             <p>Deuterium cost : 1 500</p>
+            <p>Quantity : 0</p>
             <input type="submit" name="page" value="Build : 55 s">
         </div>
 
@@ -43,6 +46,7 @@
             <p>colonization ships</p>
             <p>Metal cost : 10 000</p>
             <p>Deuterium cost : 10 000</p>
+            <p>Quantity : 0</p>
             <input type="submit" name="page" value="Build : 120 s">
         </div>
     </div>

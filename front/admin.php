@@ -19,5 +19,7 @@
         <form method="post" action="../api/set-up-technologies.php">
             <input type="submit" value="set-up-technologies">
         </form>
+        <form method="post" action="../api/ship-displayAPI.php">
+            <input type="submit" value="set-up-ships">
     </div>
 </body>
