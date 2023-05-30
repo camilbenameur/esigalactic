@@ -1,13 +1,17 @@
 <?php 
 
+session_start();
+
+$playerId = $_SESSION["player_id"];
+
 
 $db = new PDO("mysql:host=localhost;dbname=esigalactic", "root", "");
 
 $query = $db->prepare("SELECT * FROM ship_archetype");
 $query->execute();
-$ships = $query->fetchAll();
+$shipArchetypes = $query->fetchAll();
 
-if(!$ships) {
+if(!$shipArchetypes) {
     insertShipArchetype("fighter ", 20, 3000, 500, 50, 75, 0);
     insertShipArchetype("cruiser", 120, 20000, 5000, 150, 400, 0);
     insertShipArchetype("carrier", 55, 6000, 1500, 50, 0, 100000);
@@ -21,6 +25,19 @@ function insertShipArchetype ($name, $building_time, $metal_building_cost, $deut
     $query->execute([$name, $building_time, $metal_building_cost, $deuterium_building_cost, $defence_value, $offence_value, $fret_value]);
 }
 
-echo json_encode($ships)
+$query = $db->prepare("SELECT s.id, s.planet_id, s.archetype_id, s.amount, p.player_id
+    FROM ship AS s
+    JOIN planet AS p ON s.planet_id = p.id
+    WHERE p.player_id = ?;");
+
+$query->execute([$playerId]);
+$ships = $query->fetchAll();
+
+$data = [
+    "ships" => $ships,
+    "shipArchetypes" => $shipArchetypes
+];
+
+echo json_encode($data);
 
 ?>
