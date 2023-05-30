@@ -1,6 +1,29 @@
 <?php
-
 session_start();
+
+function checkTechnology($technologies, $archetypeId) {
+    foreach($technologies as $technology){
+        if($technology["archetype_id"] == $archetypeId){
+            return $technology;
+        }
+    }
+    return null;
+}
+
+function updateWallet($db, $metal, $deuterium, $energy, $playerId, $universeId) {
+    $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ? AND universe_id = ?;");
+    $query->execute([$metal, $deuterium, $energy, $playerId, $universeId]);
+}
+
+function insertInfrastructure($db, $planetId, $archetypeId, $level) {
+    $query = $db->prepare("INSERT INTO infrastructure (planet_id, archetype_id, level) VALUES (?, ?, ?);");
+    $query->execute([$planetId, $archetypeId, $level]);
+}
+
+function updateInfrastructureLevel($db, $infrastructureLevel, $planetId, $archetypeId) {
+    $query = $db->prepare("UPDATE infrastructure SET level = ? WHERE planet_id = ? AND archetype_id = ?;");
+    $query->execute([$infrastructureLevel, $planetId, $archetypeId]);
+}
 
 $archetypeId = $_GET["archetype-choice"];
 $planetId = $_SESSION["planet-choice"];
@@ -32,65 +55,57 @@ $query = $db->prepare("SELECT * FROM technology WHERE planet_id = ?;");
 $query->execute([$planetId]);
 $technologies = $query->fetchAll();
 
-$energyTechnology = null;
-$laserTechnology = null;
-$ionTechnology = null;
-$shieldTechnology = null;
-$weaponryTechnology = null;
+$energyTechnology = checkTechnology($technologies, 1);
+$laserTechnology = checkTechnology($technologies, 2);
+$ionTechnology = checkTechnology($technologies, 3);
+$shieldTechnology = checkTechnology($technologies, 4);
+$weaponryTechnology = checkTechnology($technologies, 5);
 
-foreach($technologies as $technology){
-    if($technology["archetype_id"] ==1){
-        $energyTechnology = $technology;
-    }else if($technology["archetype_id"] ==2){
-        $laserTechnology = $technology;
-    }else if($technology["archetype_id"] ==3){
-        $ionTechnology = $technology;
-    }else if($technology["archetype_id"] ==4){
-        $shieldTechnology = $technology;
-    }else if($technology["archetype_id"] ==5){
-        $weaponryTechnology = $technology;
-    }
-}
+if (
+    $infrastructureName == "Research lab" ||
+    $infrastructureName == "Shipyard" ||
+    $infrastructureName == "Nanite factory" ||
+    $infrastructureName == "Metal mine" ||
+    $infrastructureName == "Deuterium synthesizer" ||
+    $infrastructureName == "Solar plant" ||
+    $infrastructureName == "Fusion plant" ||
+    ($infrastructureName == "Laser artillery" && $laserTechnology != null) ||
+    ($infrastructureName == "Ion cannon" && $ionTechnology != null) ||
+    ($infrastructureName == "Shield" && $shieldTechnology != null)
+) {
+    if ($infrastructureLevel == 0) {
+        if ($metal >= $metal_cost && $deuterium >= $deuterium_cost && $energy >= $energy_cost) {
+            $metal -= $metal_cost;
+            $deuterium -= $deuterium_cost;
+            $energy -= $energy_cost;
 
-if($infrastructureName == "Research lab" || $infrastructureName == "Shipyard" || $infrastructureName == "Nanite factory" || $infrastructureName == "Metal mine" || $infrastructureName == "Deuterium synthesizer" || $infrastructureName == "Solar plant" || $infrastructureName == "Fusion plant" || $infrastructureName == "Laser artillery" && $laserTechnology != null || $infrastructureName == "Ion cannon" && $ionTechnology != null || $infrastructureName == "Shield" && $shieldTechnology != null){
-    if($infrastructureLevel == 0) {
-            if ($metal >= $metal_cost && $deuterium >= $deuterium_cost && $energy >= $energy_cost) {
-                $metal = $metal - $metal_cost;
-                $deuterium = $deuterium - $deuterium_cost;
-                $energy = $energy - $energy_cost;
+            updateWallet($db, $metal, $deuterium, $energy, $playerId, $universeId);
+            insertInfrastructure($db, $planetId, $archetypeId, 1);
 
-                $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ? AND universe_id = ?;");
-                $query->execute([$metal, $deuterium, $energy, $playerId, $universeId]);
-
-                $query = $db->prepare("INSERT INTO infrastructure (planet_id, archetype_id, level) VALUES (?, ?, ?);");
-                $query->execute([$planetId, $archetypeId, 1]);
-
-                echo json_encode(["success" => true]);
-            } else {
-                echo json_encode(["success" => false]);
-            }
+            echo json_encode(["success" => true]);
         } else {
-            $metal_cost *= pow(1.6, $infrastructureLevel);
-            $deuterium_cost *= pow(1.6, $infrastructureLevel);
-            $energy_cost *= pow(1.6, $infrastructureLevel);
-
-            if ($metal >= $metal_cost && $deuterium >= $deuterium_cost && $energy >= $energy_cost) {
-                $metal = $metal - $metal_cost;
-                $deuterium = $deuterium - $deuterium_cost;
-                $energy = $energy - $energy_cost;
-                $infrastructureLevel++;
-
-                $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ?, energy = ? WHERE player_id = ? AND universe_id = ?;");
-                $query->execute([$metal, $deuterium, $energy, $playerId, $universeId]);
-                
-                $query = $db->prepare("UPDATE infrastructure SET level = ? WHERE planet_id = ? AND archetype_id = ?;");
-                $query->execute([$infrastructureLevel, $planetId, $archetypeId]);
-
-                echo json_encode(["success" => true]);
-            } else {
-                echo json_encode(["success" => false]);
-            }
+            echo json_encode(["success" => false]);
         }
+    } else {
+        $metal_cost *= pow(1.6, $infrastructureLevel);
+        $deuterium_cost *= pow(1.6, $infrastructureLevel);
+        $energy_cost *= pow(1.6, $infrastructureLevel);
+
+        if ($metal >= $metal_cost && $deuterium >= $deuterium_cost && $energy >= $energy_cost) {
+            $metal -= $metal_cost;
+            $deuterium -= $deuterium_cost;
+            $energy -= $energy_cost;
+            $infrastructureLevel++;
+
+            updateWallet($db, $metal, $deuterium, $energy, $playerId, $universeId);
+            updateInfrastructureLevel($db, $infrastructureLevel, $planetId, $archetypeId);
+
+            echo json_encode(["success" => true]);
+        } else {
+            echo json_encode(["success" => false]);
+        }
+    }
 } else {
     echo json_encode(["success" => false]);
 }
+?>
