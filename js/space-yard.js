@@ -1,6 +1,21 @@
+const url = 'http://esigalactic/api/ship-displayAPI.php';
+
+
 let metalDisplay = document.getElementById('metal-display');
 let deuteriumDisplay = document.getElementById('deuterium-display');
-let energyDisplay = document.getElementById('energy-display');
+let energyDisplayD = document.getElementById('energy-display');
+
+let fighterQuantityDisplay = document.getElementById('fighter-quantity');
+let cruiserQuantityDisplay = document.getElementById('cruiser-quantity');
+let transporterQuantityDisplay = document.getElementById('transporter-quantity');
+let coloniserQuantityDisplay = document.getElementById('coloniser-quantity');
+
+let shipsDisplay = document.querySelectorAll('.ship');
+
+shipsDisplay.forEach(ship => {
+    ship.
+});
+
 
 async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
@@ -12,7 +27,46 @@ async function updateWalletData() {
 
     metalDisplay.innerHTML = "Metal : " + metal;
     deuteriumDisplay.innerHTML = "Deuterium : " + deuterium;
-    energyDisplay.innerHTML = "Energy : " + energy;
+    energyDisplayD.innerHTML = "Energy : " + energy;
 }
 
-updateWalletData();
+
+async function update() {
+    updateWalletData();
+    const answer = await fetch(url);
+    const data = await answer.json();
+    console.log(data);
+
+    const ships = data.ships;
+
+    let fighterQuantity = 0;
+    let cruiserQuantity = 0;
+    let transporterQuantity = 0;
+    let coloniserQuantity = 0;
+
+    ships.forEach(element => {
+        if(element.archetype_id == 1) {
+            fighterQuantity = element.amount;
+        }
+        else if(element.archetype_id == 2) {
+            cruiserQuantity = element.amount;
+        }
+        else if(element.archetype_id == 3) {
+            transporterQuantity = element.amount;
+        }
+        else if(element.archetype_id == 4) {
+            coloniserQuantity = element.amount;
+        }
+    });
+
+
+    fighterQuantityDisplay.innerHTML = "Available : " + fighterQuantity;
+    cruiserQuantityDisplay.innerHTML = "Available : " + cruiserQuantity;
+    transporterQuantityDisplay.innerHTML = "Available : " + transporterQuantity;
+    coloniserQuantityDisplay.innerHTML = "Available : " + coloniserQuantity;
+   
+}
+
+
+
+window.onload = update;
