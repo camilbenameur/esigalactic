@@ -14,6 +14,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/portal.css"/>
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>Portal</title>
@@ -44,10 +45,12 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
         </form>
     </div>
 
-    <div class="disconnect-button">
-        <form id="choice-form" action="../api/process-logout.php" method="post">
-            <input id="disconnect" type="submit" value="Disconnect">
+
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
         </form>
     </div>
+    <script src="../js/logout.js"></script>
 </body>
 </html>

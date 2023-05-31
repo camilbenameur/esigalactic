@@ -1,6 +1,6 @@
 .portal-button {
     position: absolute;
-    top: 10px;
+    top: 125px;
     left: 10px;
 }
 
@@ -20,6 +20,23 @@
 
 }
 
-.portal-button:hover{
+.logout-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logout-button input {
+    width:100px;
+    height:100px;
+    border-radius: 50px;
+}
+
+.logout-button input:hover {
+    transition: 500ms;
+    border: 2px solid #0eaad1; /* Adjust the color of the neon effect */
+    box-shadow: 0 0 5px #ca1d1d, 0 0 20px #ca1d1d, 0 0 40px #ca1d1d, 0 0 60px #ca1d1d; 
+    z-index: 1;
+
 
 }
