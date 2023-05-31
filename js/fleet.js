@@ -10,6 +10,7 @@ class FleetAPI {
       this.update = this.update.bind(this);
       this.solarSystemChoice.addEventListener('change', this.update);
       this.galaxyChoice.addEventListener('change', this.update);
+
       this.fighterQuantityDisplay = document.getElementById('fighterNbr');
       this.cruiserQuantityDisplay = document.getElementById('cruiserNbr');
       this.transporterQuantityDisplay = document.getElementById('transporterNbr');
@@ -19,6 +20,9 @@ class FleetAPI {
       this.cruiserInpt = document.getElementById("cruiser-inpt");
       this.transporterInpt = document.getElementById("transporter-inpt");
       this.colonizationInpt = document.getElementById("colonization-inpt");
+
+
+      this.planetChoice.addEventListener('change', this.displayPlanetInformation.bind(this));
     }
   
     async fetchData() {
@@ -38,6 +42,8 @@ class FleetAPI {
     
 
     update() {
+
+
       this.fetchData().then(data => {
         console.log(data);
         data.forEach(element => {
@@ -78,6 +84,12 @@ class FleetAPI {
         this.coloniserQuantityDisplay.innerHTML = "colonization ship : " + coloniserQuantity;
 
 
+        //set initial value of inputs to 0
+        this.fighterInpt.value = 0;
+        this.cruiserInpt.value = 0;
+        this.transporterInpt.value = 0;
+        this.colonizationInpt.value = 0;
+
         //max value for input type 'number'
 
         this.fighterInpt.addEventListener("input", () =>{
@@ -104,6 +116,33 @@ class FleetAPI {
           }
         });
       })
+
+      this.displayPlanetInformation();
+    }
+
+
+
+    displayPlanetInformation() {
+      const selectedPlanet = this.planetChoice.value;
+  
+      if (selectedPlanet) {
+        // Faire une requête à l'API pour obtenir les informations de la planète sélectionnée
+        fetch(`${this.url}?galaxy-choice=${this.galaxyChoice.value}&solar-system-choice=${this.solarSystemChoice.value}&planet-choice=${selectedPlanet}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            // Afficher les informations de la planète dans le div planetDisplay
+            console.log(selectedPlanet);
+            data.forEach(element =>{
+              if(selectedPlanet===element.name){
+                this.planetDisplay.innerText = element.name + " owner : " + element.player_id;
+              }
+              
+            })
+          });
+      } else {
+        this.planetDisplay.innerHTML = 'no selected planet';
+      }
     }
   
     init() {
@@ -111,7 +150,7 @@ class FleetAPI {
     }
   }
   
-  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/ship-displayAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-display');
+  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/ship-displayAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-info');
   fleetAPI.init();
   
 

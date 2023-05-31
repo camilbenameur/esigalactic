@@ -4,7 +4,11 @@
     if(!isset($_SESSION["player_id"])){
         header("Location:../front/login.php");
     }
-    $_SESSION["planet_id"] = 1; 
+    if (isset($_GET["planet-choice"])) {
+        $_SESSION["planet_id"] = $_GET["planet-choice"];
+    }else{
+        $_SESSIONS["planet_id"] = 1;
+    }
 
 ?>
 
