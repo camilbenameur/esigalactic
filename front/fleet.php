@@ -4,7 +4,11 @@
     if(!isset($_SESSION["player_id"])){
         header("Location:../front/login.php");
     }
-    $_SESSION["planet_id"] = 1; 
+    if (isset($_GET["planet-choice"])) {
+        $_SESSION["planet_id"] = $_GET["planet-choice"];
+    }else{
+        $_SESSIONS["planet_id"] = 1;
+    }
 
 ?>
 
@@ -27,25 +31,25 @@
         <div class="ship" id="fighter">
             <img id='fighter-pic' width=260px height=150px draggable="false" alt="fighter ship" src="../images/fleet/fighter.jpg">
             <p id="fighterNbr"></p>
-            <input type="number" name="fighter-nbr" placeholder="Select number">
+            <input type="number" id="fighter-inpt" name="fighter-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="cruiser">
             <img id='cruiser-pic' width=260px height=150px draggable="false" alt="cruiser ship" src="../images/fleet/cruiser.jpg">
             <p id="cruiserNbr"></p>
-            <input type="number" name="cruiser-nbr" placeholder="Select number">
+            <input type="number" id="cruiser-inpt" name="cruiser-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="transporter">
             <img id='transporter-pic' width=260px height=150px draggable="false" alt="transporter ship" src="../images/fleet/transporter.jpg">
             <p id="transporterNbr"></p>
-            <input type="number" name="transporter-nbr" placeholder="Select number">
+            <input type="number" id="transporter-inpt" name="transporter-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="colonization-ship">
             <img id='colonization-pic' width=260px height=150px draggable="false" alt="colonization ship" src="../images/fleet/colonization-ship.jpg">
             <p id="colonizationNbr"></p>
-            <input type="number" name="colonization-nbr" placeholder="Select number">
+            <input type="number" id="colonization-inpt" name="colonization-nbr" placeholder="Select number">
         </div>
     </div>
 
@@ -90,6 +94,13 @@
         <form id="choice-form" action="" method="post">
             <input id="colonize" type="submit" value="colonize">
         </form>
+    </div>
+
+    <div class="display-stats">
+        <h3>Your statistics</h3>
+        <p id="attack-stats"></p>
+        <p id="def-stats"></p>
+        <p id="fret-stats"></p>
     </div>
 
       
