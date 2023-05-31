@@ -22,6 +22,11 @@ class FleetAPI {
       this.colonizationInpt = document.getElementById("colonization-inpt");
 
 
+      this.attackStats = document.getElementById("attack-stats");
+      this.defStats = document.getElementById("def-stats");
+      this.fretStats = document.getElementById("fret-stats");
+
+
       this.planetChoice.addEventListener('change', this.displayPlanetInformation.bind(this));
     }
   
@@ -115,9 +120,19 @@ class FleetAPI {
             this.colonizationInpt.value = coloniserQuantity;
           }
         });
+
+
+        console.log(this.fighterInpt.value);
+
+
       })
 
+    
+
       this.displayPlanetInformation();
+
+      //display statistics called every second
+      setInterval(this.displayStatistics.bind(this), 1000);
     }
 
 
@@ -143,6 +158,22 @@ class FleetAPI {
       } else {
         this.planetDisplay.innerHTML = 'no selected planet';
       }
+    }
+
+    displayStatistics() {
+      var attackPts = 0;
+      var defPts = 0;
+      var fretPts = 0;
+
+      //work out statistics
+      attackPts = this.fighterInpt.value*75 + this.cruiserInpt.value*400;
+      defPts = this.fighterInpt.value*50 + this.cruiserInpt.value*150 + this.transporterInpt.value*50 + this.colonizationInpt.value*50;
+      fretPts = this.transporterInpt.value*100000;
+
+      //display statistics
+      this.attackStats.innerText = "attack points : " + attackPts;
+      this.defStats.innerText = "Defense points : " + defPts;
+      this.fretStats.innerText = "Fret capacity : " + fretPts;
     }
   
     init() {

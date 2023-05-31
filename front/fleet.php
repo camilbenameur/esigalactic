@@ -96,6 +96,13 @@
         </form>
     </div>
 
+    <div class="display-stats">
+        <h3>Your statistics</h3>
+        <p id="attack-stats"></p>
+        <p id="def-stats"></p>
+        <p id="fret-stats"></p>
+    </div>
+
       
     <div class="display-planet" id="planet-info">
 
