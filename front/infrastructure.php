@@ -15,7 +15,7 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/infrastructure.css"/>
-    <link rel="stylesheet" href="../style/portal-button.css"/>
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>Infrastructure</title>
@@ -61,8 +61,14 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
             <input type="image" name="button" src="../images/portal/portal.png" alt="submit">
         </form>
     </div>
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
+        </form>
+    </div>
 
     <script src="../js/portal-redirection.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/infrastructure.js"></script>
 </body>
 </html>

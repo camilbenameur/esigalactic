@@ -7,7 +7,7 @@
     if (isset($_GET["planet-choice"])) {
         $_SESSION["planet_id"] = $_GET["planet-choice"];
     }else{
-        $_SESSIONS["planet_id"] = 1;
+        $_SESSION["planet_id"] = 1;
     }
 
 ?>
@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/fleet.css"/>
-    <link rel="stylesheet" href="../style/portal-button.css"/>
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>fleet</title>
@@ -116,7 +116,14 @@
         </form>
     </div>
 
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
+        </form>
+    </div>
+
     <script src="../js/portal-redirection.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/fleet.js"></script>
 
 </body>
