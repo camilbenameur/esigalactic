@@ -14,6 +14,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/research-lab.css"/>
+    <link rel="stylesheet" href="../style/portal-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>Research lab</title>
@@ -69,6 +70,13 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             <p id="energy-display"></p>
         </span>
     </div>
+    <div class="portal-button">
+        <form id="portal-form" method="POST">
+            <input type="image" name="button" src="../images/portal/portal.png" alt="submit">
+        </form>
+    </div>
+
+    <script src="../js/portal-redirection.js"></script>
 
     <script src="../js/technology.js"></script>  
 </body>
