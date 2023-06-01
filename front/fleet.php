@@ -106,7 +106,6 @@
 
       
     <div class="display-planet" id="planet-info">
-
                 
     </div>
 
