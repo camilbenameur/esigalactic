@@ -27,6 +27,7 @@ class FleetAPI {
       this.fretStats = document.getElementById("fret-stats");
 
 
+
       this.planetChoice.addEventListener('change', this.displayPlanetInformation.bind(this));
     }
   
@@ -150,7 +151,31 @@ class FleetAPI {
             console.log(selectedPlanet);
             data.forEach(element =>{
               if(selectedPlanet===element.name){
-                this.planetDisplay.innerText = element.name + " owner : " + element.player_id;
+                //refresh inner html
+                this.planetDisplay.innerHTML = "";
+
+                //create <p> elements
+                const planetName = document.createElement('p');
+                const planetOwner = document.createElement('p');
+                const planetAttack = document.createElement('p');
+                const planetDef = document.createElement('p');
+                const planetMetal = document.createElement('p');
+                const planetDeuterium = document.createElement('p');
+
+                planetName.textContent = element.name;
+                planetOwner.textContent = "owner : " + element.player_id;
+                planetAttack.textContent = "Attack points : ";
+                planetDef.textContent = "Defense points : ";
+                planetMetal.textContent = "Metal : ";
+                planetDeuterium.textContent = "Deuterium: ";
+
+                //append childs
+                this.planetDisplay.appendChild(planetName);
+                this.planetDisplay.appendChild(planetOwner);
+                this.planetDisplay.appendChild(planetAttack);
+                this.planetDisplay.appendChild(planetDef);
+                this.planetDisplay.appendChild(planetMetal);
+                this.planetDisplay.appendChild(planetDeuterium);
               }
               
             })
