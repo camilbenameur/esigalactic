@@ -4,7 +4,11 @@
     if(!isset($_SESSION["player_id"])){
         header("Location:../front/login.php");
     }
-    $_SESSION["planet_id"] = 1; 
+    if (isset($_GET["planet-choice"])) {
+        $_SESSION["planet_id"] = $_GET["planet-choice"];
+    }else{
+        $_SESSION["planet_id"] = 1;
+    }
 
 ?>
 
@@ -15,6 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/fleet.css"/>
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>fleet</title>
@@ -27,25 +32,25 @@
         <div class="ship" id="fighter">
             <img id='fighter-pic' width=260px height=150px draggable="false" alt="fighter ship" src="../images/fleet/fighter.jpg">
             <p id="fighterNbr"></p>
-            <input type="number" name="fighter-nbr" placeholder="Select number">
+            <input type="number" id="fighter-inpt" name="fighter-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="cruiser">
             <img id='cruiser-pic' width=260px height=150px draggable="false" alt="cruiser ship" src="../images/fleet/cruiser.jpg">
             <p id="cruiserNbr"></p>
-            <input type="number" name="cruiser-nbr" placeholder="Select number">
+            <input type="number" id="cruiser-inpt" name="cruiser-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="transporter">
             <img id='transporter-pic' width=260px height=150px draggable="false" alt="transporter ship" src="../images/fleet/transporter.jpg">
             <p id="transporterNbr"></p>
-            <input type="number" name="transporter-nbr" placeholder="Select number">
+            <input type="number" id="transporter-inpt" name="transporter-nbr" placeholder="Select number">
         </div>
 
         <div class="ship" id="colonization-ship">
             <img id='colonization-pic' width=260px height=150px draggable="false" alt="colonization ship" src="../images/fleet/colonization-ship.jpg">
             <p id="colonizationNbr"></p>
-            <input type="number" name="colonization-nbr" placeholder="Select number">
+            <input type="number" id="colonization-inpt" name="colonization-nbr" placeholder="Select number">
         </div>
     </div>
 
@@ -92,12 +97,33 @@
         </form>
     </div>
 
+    <div class="display-stats">
+        <h3>Your statistics</h3>
+        <p id="attack-stats"></p>
+        <p id="def-stats"></p>
+        <p id="fret-stats"></p>
+    </div>
+
       
     <div class="display-planet" id="planet-info">
-
                 
     </div>
 
-    <script src="../js/fleet.js"></script> 
+    <div class="portal-button">
+        <form id="portal-form" method="POST">
+            <input type="image" name="button" src="../images/portal/portal.png" alt="submit">
+        </form>
+    </div>
+
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
+        </form>
+    </div>
+
+    <script src="../js/portal-redirection.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/fleet.js"></script>
+
 </body>
 </html>

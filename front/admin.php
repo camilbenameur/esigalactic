@@ -8,6 +8,10 @@
 <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
 </head>
 <body>
+
+    <img id="meme1" class="meme" draggable="false" width=500px height=250px src="../images/admin/meme1.png" alt="background">
+    <p class="texte">oui j'ai perdu du temps à faire ça</p>
+
     <div class="choice">
         <form method="post" action="../api/create-universe.php" >
             <input type="text" name="universeName" placeholder="Universe name">
@@ -22,4 +26,7 @@
         <form method="post" action="../api/ship-displayAPI.php">
             <input type="submit" value="set-up-ships">
     </div>
+
+    <script src="../js/admin.js"></script>
+
 </body>

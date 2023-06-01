@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/space-yard.css"/>
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <title>space yard</title>
@@ -74,6 +75,20 @@
             <li>D</li>
         </ul>
     </div>
+    <div class="portal-button">
+        <form id="portal-form" method="POST">
+            <input type="image" name="button" src="../images/portal/portal.png" alt="submit">
+        </form>
+    </div>
+
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
+        </form>
+    </div>
+
+    <script src="../js/portal-redirection.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/space-yard.js"></script>
 </body>
 </html>

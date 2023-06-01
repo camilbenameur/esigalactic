@@ -14,6 +14,7 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/galaxy-style.css">
+    <link rel="stylesheet" href="../style/menu-button.css"/>
     <link rel="icon" href="../images/ESIGALACTIC.ico">
     <link href='https://fonts.googleapis.com/css?family=Bruno Ace SC' rel='stylesheet'>
     <title>Galaxy</title>
@@ -51,14 +52,25 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
             ?>
         </select>
     </form>
-    <div class="disconnect-button">
-        <form id="choice-form" action="../api/process-logout.php" method="post">
-            <input id="disconnect" type="submit" value="Disconnect">
-        </form>
-    </div>
+    
     <div id="planet-display" class="planet-display">   
         <script src="../js/galaxy.js"></script>    
     </div>
+
+    <div class="portal-button">
+        <form id="portal-form" method="POST">
+            <input type="image" name="button" src="../images/portal/portal.png" alt="submit">
+        </form>
+    </div>
+
+    <div class="logout-button">
+        <form id="logout-form" method="POST">
+            <input type="image" name="logout-button" src="../images/logout.png" alt="submit">
+        </form>
+    </div>
+
+    <script src="../js/portal-redirection.js"></script>
+    <script src="../js/logout.js"></script>
 
 
 </body>
