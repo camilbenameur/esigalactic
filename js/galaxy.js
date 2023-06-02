@@ -27,7 +27,7 @@ class GalaxyAPI {
             .then(response => response.json())
             .then(playerData => {
               console.log(playerData);
-              const playerName = playerData.name || "None";
+              const playerName = playerData.name;
               let planet = document.createElement('p');
               planet.id = 'planet-' + element.id;
               planet.classList.add('planet');
