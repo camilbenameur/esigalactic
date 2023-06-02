@@ -60,12 +60,11 @@ class Authentication
             $this->sessionManager->set("universe-choice", $_POST['universe-choice']);
             $this->sessionManager->set("galaxy-choice", 1);
             $this->sessionManager->set("solar-system-choice", 1);
-            $this->sessionManager->set("planet-choice", 1);
             $walletRows = $this->db->getWallet($_SESSION["player_id"], $_SESSION["universe-choice"]);
             $this->sessionManager->set("deuterium", $walletRows[0]["deuterium"]);
             $this->sessionManager->set("metal", $walletRows[0]["metal"]);
             $this->sessionManager->set("energy", $walletRows[0]["energy"]);
-            header("Location:../front/portal.php");
+            header("Location:../front/galaxy.php");
         } else {
             header("Location:../front/login.php");
         }
