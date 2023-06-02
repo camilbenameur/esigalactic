@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
 $archetypeId = $_GET["archetype-choice"];
@@ -41,11 +44,13 @@ if($shipyard) {
         $deuterium = $deuterium - $deuterium_cost;
         $query = $db->prepare("INSERT INTO ship (planet_id, archetype_id, amount) VALUES (?, ?, ?);");
         $query->execute([$planetId, $archetypeId, 1]);
-    } else {
+        echo "Ship built !";
+    } else if($ship && $metal >= $metal_cost && $deuterium >= $deuterium_cost) {
         $metal = $metal - $metal_cost;
         $deuterium = $deuterium - $deuterium_cost;
         $query = $db->prepare("UPDATE ship SET amount = ? WHERE planet_id = ? AND archetype_id = ?;");
         $query->execute([$ship[0]["amount"] + 1, $planetId, $archetypeId]);
+        echo "Ship built !";
     }  
     $query = $db->prepare("UPDATE wallet SET metal = ?, deuterium = ? WHERE player_id = ? AND universe_id = ?;");
     $query->execute([$metal, $deuterium, $playerId, $universeId]);
