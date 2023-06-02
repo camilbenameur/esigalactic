@@ -119,7 +119,6 @@ async function update(selectedValue) {
     else if(resourceArchetype != null) {
         let productionRate = resourceArchetype[0].production_rate;
         const productionRateDisplay = document.createElement('p');
-
         switch(infrastructureArchetype.name) {
             case "Metal mine":
                 infrastructurePicture.src = "../images/infrastructures/metal-mine.jpg";
@@ -158,22 +157,45 @@ async function update(selectedValue) {
                 break;
         }
     }
-
-    if(level == 0) {
+    if (level == 0) {
         const buildButton = document.createElement('button');
         buildButton.innerHTML = "BUILD";
-        buildButton.addEventListener('click', function() {
-            enhanceInfrastructure(archetypeId, level);
+        buildButton.addEventListener('click', function () {
+          showModalAndStartTimer(archetypeId, level);
         });
         facilityDisplay.appendChild(buildButton);
-    }
-    else {
+      } else {
         const upgradeButton = document.createElement('button');
         upgradeButton.innerHTML = "UPGRADE";
-        upgradeButton.addEventListener('click', function() {
-            enhanceInfrastructure(archetypeId, level);
+        upgradeButton.addEventListener('click', function () {
+          showModalAndStartTimer(archetypeId, level);
         });
         facilityDisplay.appendChild(upgradeButton);
+      }
+      function showModalAndStartTimer(archetypeId, level) {
+        const modal = document.getElementById('upgradeModal');
+        modal.style.display = 'block';
+        const countdownTimer = document.getElementById('countdownTimer');
+        countdownTimer.textContent = building_time;
+        const timerDuration = building_time * 1000;
+        let remainingTime = timerDuration;
+        const countdownInterval = 1000; // 1 second
+        const timerInterval = setInterval(function () {
+          remainingTime -= countdownInterval;
+          const seconds = Math.ceil(remainingTime / 1000);
+          countdownTimer.textContent = seconds;
+          if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            modal.style.display = 'none';
+            enhanceInfrastructure(archetypeId, level);
+            }
+        }, countdownInterval);
+      
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', function () {
+          clearInterval(timerInterval);
+          modal.style.display = 'none';
+        });
     }
 }
 
