@@ -21,6 +21,13 @@ $_SESSION["planet_id"] = 1; // Planet id is set to 1 for now, will obtained from
     <title>Infrastructure</title>
 </head>
 <body>
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h1>Upgrade in <span id="countdownTimer"></span> seconds</h1>
+        </div>
+    </div>
+    
     <img id="bg" draggable="false" src="../images/infrastructure-background.jpg" alt="background">
     <div class="gradient"></div>
     <div class="infrastructure">
