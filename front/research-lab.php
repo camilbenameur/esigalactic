@@ -20,6 +20,13 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
     <title>Research lab</title>
 </head>
 <body>
+
+    <div id="upgradeModal" class="modal">
+        <div class="modal-content">
+            <h1>Upgrade in <span id="countdownTimer"></span> seconds</h1>
+        </div>
+    </div>
+
     <img id="bg" draggable="false" src="../images/research-lab/lab-background.jpg" alt="background">
     <div class="gradient"></div>
 

@@ -1,6 +1,5 @@
 document.getElementById("logout-form").addEventListener("submit", function(event) {
     event.preventDefault();
-
     fetch("../api/process-logout.php", {
         method: "POST",
         headers: {
@@ -9,7 +8,6 @@ document.getElementById("logout-form").addEventListener("submit", function(event
     })
     .then(function(response) {
         if (response.ok) {
-            // Rafraîchir la page
             window.location.reload();
         } else {
             throw new Error("Erreur lors de la déconnexion");

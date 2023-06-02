@@ -204,12 +204,68 @@ class FleetAPI {
     init() {
       this.update();
     }
+}
+  
+const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/ship-displayAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-info');
+fleetAPI.init();
+
+
+async function getShips() {
+  const response = await fetch('http://esigalactic/api/ship-displayAPI.php');
+  const data = await response.json();
+  console.log(data);
+}
+
+async function getInfrastructures() {
+  const response = await fetch('http://esigalactic/api/infrastructure-displayAPI.php?archetype-choice=8');
+  const laserArtillery = await response.json();
+
+  const response2 = await fetch('http://esigalactic/api/infrastructure-displayAPI.php?archetype-choice=9');
+  const ionCannon = await response2.json();
+
+  const response3 = await fetch('http://esigalactic/api/infrastructure-displayAPI.php?archetype-choice=10');
+  const shield = await response3.json();
+
+  console.log(laserArtillery);
+
+
+  if(laserArtillery.infrastructure[0] != undefined){
+    var laserArtilleryLevel = laserArtillery.infrastructure[0].level;
+    var laserDefaultOffenseValue = laserArtillery.infrastructureArchetype.defence[0].offence_value;
+    var laserDefaultDefenseValue = laserArtillery.infrastructureArchetype.defence[0].defence_value;
+  } else {
+    var laserArtilleryLevel = 0;
   }
-  
-  const fleetAPI = new FleetAPI('http://esigalactic/api/galaxyAPI.php','http://esigalactic/api/ship-displayAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-choice', 'planet-info');
-  fleetAPI.init();
-  
+
+  if(ionCannon.infrastructure[0].level != undefined){
+    var ionCannonLevel = ionCannon.infrastructure[0].level;
+    var ionDefaultOffenseValue = ionCannon.infrastructureArchetype.defence[0].offence_value;
+    var ionDefaultDefenseValue = ionCannon.infrastructureArchetype.defence[0].defence_value;
+  } else {
+    var ionCannonLevel = 0;
+  }
+
+  if(shield.infrastructure[0].level != undefined){
+    var shieldLevel = shield.infrastructure[0].level;
+  } else {
+    var shieldLevel = 0;
+  }
 
 
+  const shieldDefaultDefenseValue = shield.defence[0].defence_value;
+
+  const laserOffenseValue = Math.round(laserDefaultOffenseValue * Math.pow(1.05, laserArtilleryLevel));
+  const ionOffenseValue = Math.round(ionDefaultOffenseValue * Math.pow(1.05, ionCannonLevel));
+
+  const shieldDefenseValue = Math.round(shieldDefaultDefenseValue * Math.pow(1.3, shieldLevel));
+
+  const offenseValue = laserOffenseValue + ionOffenseValue;
+  const defenseValue = laserDefaultDefenseValue + ionDefaultDefenseValue + shieldDefenseValue;
+
+  console.log(offenseValue);
+  console.log(defenseValue);
+}
 
 
+// getShips();
+// getInfrastructures();
