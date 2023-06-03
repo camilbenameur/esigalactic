@@ -13,7 +13,7 @@
     <p class="texte">oui j'ai perdu du temps à faire ça</p>
 
     <div class="choice">
-        <form method="post" action="../api/create-universe.php" >
+        <form method="get" action="../api/create-universe.php" >
             <input type="text" name="universeName" placeholder="Universe name">
             <input type="submit" value="New universe">
         </form>
