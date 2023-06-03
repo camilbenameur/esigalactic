@@ -84,8 +84,8 @@ class GalacticCreator
 
     public function createGalaxiesAndSolarSystems()
     {
-        if (isset($_POST['universeName'])) {
-            $universeName = $_POST['universeName'];
+        if (isset($_GET['universeName'])) {
+            $universeName = $_GET['universeName'];
             $this->createUniverse($universeName);
         }
 

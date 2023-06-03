@@ -19,7 +19,6 @@ async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
     const walletData = await walletAnswer.json();
 
-    console.log(walletData);
     
     const metal = walletData[0].metal;
     const deuterium = walletData[0].deuterium;
@@ -30,10 +29,14 @@ async function updateWalletData() {
     energyDisplay.innerHTML = "Energy : " + energy;
 }
 
+function updateResourcesProduction() {
+    fetch('http://esigalactic/api/resources-productionAPI.php');
+}
+
 
 async function update(selectedValue) {
     updateWalletData();
-    const archetypeId = selectedValue
+    const archetypeId = selectedValue;
     facilityDisplay.innerHTML = '';
     const answer = await fetch(url + '?archetype-choice=' + archetypeId);
     const data = await answer.json();
@@ -179,7 +182,7 @@ async function update(selectedValue) {
         countdownTimer.textContent = building_time;
         const timerDuration = building_time * 1000;
         let remainingTime = timerDuration;
-        const countdownInterval = 1000; // 1 second
+        const countdownInterval = 1000;
         const timerInterval = setInterval(function () {
           remainingTime -= countdownInterval;
           const seconds = Math.ceil(remainingTime / 1000);
@@ -187,8 +190,10 @@ async function update(selectedValue) {
           if (remainingTime <= 0) {
             clearInterval(timerInterval);
             modal.style.display = 'none';
-            enhanceInfrastructure(archetypeId, level);
-            }
+            Promise.resolve(enhanceInfrastructure(archetypeId, level)).then(function () {
+                updateResourcesProduction();
+            });
+        }
         }, countdownInterval);
       
         const closeButton = document.querySelector('.close');
