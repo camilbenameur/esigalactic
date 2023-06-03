@@ -19,7 +19,6 @@ async function updateWalletData() {
     const walletAnswer = await fetch('http://esigalactic/api/walletAPI.php');
     const walletData = await walletAnswer.json();
 
-    console.log(walletData);
     
     const metal = walletData[0].metal;
     const deuterium = walletData[0].deuterium;
@@ -30,10 +29,14 @@ async function updateWalletData() {
     energyDisplay.innerHTML = "Energy : " + energy;
 }
 
+function updateResourcesProduction() {
+    fetch('http://esigalactic/api/resources-productionAPI.php');
+}
+
 
 async function update(selectedValue) {
     updateWalletData();
-    const archetypeId = selectedValue
+    const archetypeId = selectedValue;
     facilityDisplay.innerHTML = '';
     const answer = await fetch(url + '?archetype-choice=' + archetypeId);
     const data = await answer.json();
@@ -119,7 +122,6 @@ async function update(selectedValue) {
     else if(resourceArchetype != null) {
         let productionRate = resourceArchetype[0].production_rate;
         const productionRateDisplay = document.createElement('p');
-
         switch(infrastructureArchetype.name) {
             case "Metal mine":
                 infrastructurePicture.src = "../images/infrastructures/metal-mine.jpg";
@@ -158,22 +160,47 @@ async function update(selectedValue) {
                 break;
         }
     }
-
-    if(level == 0) {
+    if (level == 0) {
         const buildButton = document.createElement('button');
         buildButton.innerHTML = "BUILD";
-        buildButton.addEventListener('click', function() {
-            enhanceInfrastructure(archetypeId, level);
+        buildButton.addEventListener('click', function () {
+          showModalAndStartTimer(archetypeId, level);
         });
         facilityDisplay.appendChild(buildButton);
-    }
-    else {
+      } else {
         const upgradeButton = document.createElement('button');
         upgradeButton.innerHTML = "UPGRADE";
-        upgradeButton.addEventListener('click', function() {
-            enhanceInfrastructure(archetypeId, level);
+        upgradeButton.addEventListener('click', function () {
+          showModalAndStartTimer(archetypeId, level);
         });
         facilityDisplay.appendChild(upgradeButton);
+      }
+      function showModalAndStartTimer(archetypeId, level) {
+        const modal = document.getElementById('upgradeModal');
+        modal.style.display = 'block';
+        const countdownTimer = document.getElementById('countdownTimer');
+        countdownTimer.textContent = building_time;
+        const timerDuration = building_time * 1000;
+        let remainingTime = timerDuration;
+        const countdownInterval = 1000;
+        const timerInterval = setInterval(function () {
+          remainingTime -= countdownInterval;
+          const seconds = Math.ceil(remainingTime / 1000);
+          countdownTimer.textContent = seconds;
+          if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            modal.style.display = 'none';
+            Promise.resolve(enhanceInfrastructure(archetypeId, level)).then(function () {
+                updateResourcesProduction();
+            });
+        }
+        }, countdownInterval);
+      
+        const closeButton = document.querySelector('.close');
+        closeButton.addEventListener('click', function () {
+          clearInterval(timerInterval);
+          modal.style.display = 'none';
+        });
     }
 }
 

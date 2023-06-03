@@ -14,25 +14,43 @@ let buildButtons = document.querySelectorAll('input[type="submit"]');
 let buildButtonsArray = Array.from(buildButtons);
 
 buildButtonsArray.forEach((element, index) => {
-    console.log(element);
     element.addEventListener('click', () => {
-        switch (index) {
-            case 0:
-                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=1');
-                break;
-            case 1:
-                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=2');
-                break;
-            case 2:
-                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=3');
-                break;
-            case 3:
-                fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=4');
-                break;
-        }
-        update();
+        const time = parseInt(element.dataset.time);
+        let defaultTime = time;
+        let currentTime = time;
+        element.disabled = true;
+
+        const countdown = setInterval(() => {
+            currentTime--;
+            element.value = `Build : ${currentTime} s`;
+
+            if (currentTime === 0) {
+                clearInterval(countdown);
+                element.disabled = false;
+
+                switch (index) {
+                    case 0:
+                        fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=1');
+                        break;
+                    case 1:
+                        fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=2');
+                        break;
+                    case 2:
+                        fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=3');
+                        break;
+                    case 3:
+                        fetch('http://esigalactic/api/ship-buildAPI.php?archetype-choice=4');
+                        break;
+                }
+                Promise.all([updateWalletData(), update()]).then(() => {
+                    element.value = `Build : ${defaultTime} s`;
+                });
+            }
+        }, 1000);
     });
 });
+
+
 
 
 async function updateWalletData() {

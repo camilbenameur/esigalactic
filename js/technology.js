@@ -1,4 +1,3 @@
-
 let energyTechnologyLevel = document.getElementById('energy-tech-level');
 let laserTechnologyLevel = document.getElementById('laser-tech-level');
 let ionTechnologyLevel = document.getElementById('ion-tech-level');
@@ -20,180 +19,362 @@ let display = document.getElementById('display');
 
 
 function energyDisplay(energyTechnology, energyTechnologyLevel) {
-    display.innerHTML = "";
+    const display = document.getElementById('display');
+    display.innerHTML = '';
+  
     let name = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
-
+  
     let currentDeuteriumCost = Math.round(energyTechnology.deuterium_cost * Math.pow(1.5, energyTechnologyLevel));
     let currentResearchTime = Math.round(energyTechnology.research_time * Math.pow(2, energyTechnologyLevel));
-
+  
     name.innerHTML = energyTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
-    researchTime.innerHTML = "Research time : " + currentResearchTime;
-    upgradeButton.type = "button";
-    upgradeButton.name = "energy";
-    upgradeButton.value = "upgrade";
-
+    deuteriumCost.innerHTML = 'Deuterium cost: ' + currentDeuteriumCost;
+    researchTime.innerHTML = 'Research time: ' + currentResearchTime;
+    upgradeButton.type = 'button';
+    upgradeButton.name = 'energy';
+    upgradeButton.value = 'upgrade';
+  
     display.appendChild(name);
     display.appendChild(deuteriumCost);
     display.appendChild(researchTime);
     display.appendChild(upgradeButton);
-
+  
+    let countdownInterval;
+  
     upgradeButton.addEventListener('click', async function() {
-        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=energy" + "&level=" + energyTechnologyLevel);
-        const data = await response.json();
-        
-        if (data === "success") {
-            energyTechnologyLevel++;
-            energyDisplay(energyTechnology, energyTechnologyLevel);
+      const upgradeModal = document.getElementById('upgradeModal');
+      const countdownTimer = document.getElementById('countdownTimer');
+  
+      let researchTime = currentResearchTime;
+      let secondsLeft = researchTime;
+  
+      upgradeModal.style.display = 'block';
+      countdownTimer.textContent = secondsLeft;
+  
+      countdownInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          countdownTimer.textContent = secondsLeft;
+        } else {
+          clearInterval(countdownInterval);
+          upgradeModal.style.display = 'none';
+  
+          fetch(
+            'http://esigalactic/api/technologies-upgradeAPI.php?technology=energy' +
+              '&level=' +
+              energyTechnologyLevel
+          )
+            .then(response => response.json())
+            .then(data => {
+              if (data === 'success') {
+                energyTechnologyLevel++;
+                energyDisplay(energyTechnology, energyTechnologyLevel);
+              }
+              update();
+            });
         }
-        update();
+      }, 1000);
     });
-}
-
+  
+    window.addEventListener('click', function(event) {
+      const upgradeModal = document.getElementById('upgradeModal');
+      if (event.target === upgradeModal) {
+        upgradeModal.style.display = 'none';
+        clearInterval(countdownInterval); 
+      }
+    });
+  }
+  
 function laserDisplay(laserTechnology, laserTechnologyLevel) {
-    display.innerHTML = "";
+    const display = document.getElementById('display');
+    display.innerHTML = '';
+  
     let name = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
-
+  
     let currentDeuteriumCost = Math.round(laserTechnology.deuterium_cost * Math.pow(1.5, laserTechnologyLevel));
     let currentResearchTime = Math.round(laserTechnology.research_time * Math.pow(2, laserTechnologyLevel));
-
+  
     name.innerHTML = laserTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
-    researchTime.innerHTML = "Research time : " + currentResearchTime;
-    upgradeButton.type = "button";
-    upgradeButton.name = "laser";
-    upgradeButton.value = "upgrade";
-
+    deuteriumCost.innerHTML = 'Deuterium cost: ' + currentDeuteriumCost;
+    researchTime.innerHTML = 'Research time: ' + currentResearchTime;
+    upgradeButton.type = 'button';
+    upgradeButton.name = 'laser';
+    upgradeButton.value = 'upgrade';
+  
     display.appendChild(name);
     display.appendChild(deuteriumCost);
     display.appendChild(researchTime);
     display.appendChild(upgradeButton);
-
-    upgradeButton.addEventListener('click', async function() {
-        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=laser" + "&level=" + laserTechnologyLevel);
-        const data = await response.json();
-
-        if (data === "success") {
-            laserTechnologyLevel++;
-            laserDisplay(laserTechnology, laserTechnologyLevel);
+  
+    let countdownInterval;
+  
+    upgradeButton.addEventListener('click', function() {
+      const upgradeModal = document.getElementById('upgradeModal');
+      const countdownTimer = document.getElementById('countdownTimer');
+  
+      let researchTime = currentResearchTime;
+      let secondsLeft = researchTime;
+  
+      upgradeModal.style.display = 'block';
+      countdownTimer.textContent = secondsLeft;
+  
+      countdownInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          countdownTimer.textContent = secondsLeft;
+        } else {
+          clearInterval(countdownInterval);
+          upgradeModal.style.display = 'none';
+  
+          fetch(
+            'http://esigalactic/api/technologies-upgradeAPI.php?technology=laser' +
+              '&level=' +
+              laserTechnologyLevel
+          )
+            .then(response => response.json())
+            .then(data => {
+              if (data === 'success') {
+                laserTechnologyLevel++;
+                laserDisplay(laserTechnology, laserTechnologyLevel);
+              }
+              update();
+            });
         }
-        update();
+      }, 1000);
     });
-}
-
-function ionDisplay(ionTechnology, ionTechnologyLevel) {
-    display.innerHTML = "";
+  
+    window.addEventListener('click', function(event) {
+      const upgradeModal = document.getElementById('upgradeModal');
+      if (event.target === upgradeModal) {
+        upgradeModal.style.display = 'none';
+        clearInterval(countdownInterval);
+      }
+    });
+  }
+  
+  function ionDisplay(ionTechnology, ionTechnologyLevel) {
+    const display = document.getElementById('display');
+    display.innerHTML = '';
+  
     let name = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
-
+  
     let currentDeuteriumCost = Math.round(ionTechnology.deuterium_cost * Math.pow(1.5, ionTechnologyLevel));
     let currentResearchTime = Math.round(ionTechnology.research_time * Math.pow(2, ionTechnologyLevel));
-
+  
     name.innerHTML = ionTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
-    researchTime.innerHTML = "Research time : " + currentResearchTime;
-    upgradeButton.type = "button";
-    upgradeButton.name = "ion";
-    upgradeButton.value = "upgrade";
-
+    deuteriumCost.innerHTML = 'Deuterium cost: ' + currentDeuteriumCost;
+    researchTime.innerHTML = 'Research time: ' + currentResearchTime;
+    upgradeButton.type = 'button';
+    upgradeButton.name = 'ion';
+    upgradeButton.value = 'upgrade';
+  
     display.appendChild(name);
     display.appendChild(deuteriumCost);
     display.appendChild(researchTime);
     display.appendChild(upgradeButton);
-
-    upgradeButton.addEventListener('click', async function() {
-        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=ion" + "&level=" + ionTechnologyLevel);
-        const data = await response.json();
-
-        if (data === "success") {
-            ionTechnologyLevel++;
-            ionDisplay(ionTechnology, ionTechnologyLevel);
+  
+    let countdownInterval;
+  
+    upgradeButton.addEventListener('click', function() {
+      const upgradeModal = document.getElementById('upgradeModal');
+      const countdownTimer = document.getElementById('countdownTimer');
+  
+      let researchTime = currentResearchTime;
+      let secondsLeft = researchTime;
+  
+      upgradeModal.style.display = 'block';
+      countdownTimer.textContent = secondsLeft;
+  
+      countdownInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          countdownTimer.textContent = secondsLeft;
+        } else {
+          clearInterval(countdownInterval);
+          upgradeModal.style.display = 'none';
+  
+          fetch(
+            'http://esigalactic/api/technologies-upgradeAPI.php?technology=ion' +
+              '&level=' +
+              ionTechnologyLevel
+          )
+            .then(response => response.json())
+            .then(data => {
+              if (data === 'success') {
+                ionTechnologyLevel++;
+                ionDisplay(ionTechnology, ionTechnologyLevel);
+              }
+              update();
+            });
         }
-        update();
+      }, 1000);
     });
-}
+  
+    window.addEventListener('click', function(event) {
+      const upgradeModal = document.getElementById('upgradeModal');
+      if (event.target === upgradeModal) {
+        upgradeModal.style.display = 'none';
+        clearInterval(countdownInterval);
+      }
+    });
+  }
+  
+  
 
-function shieldDisplay(shieldTechnology, shieldTechnologyLevel) {
-    display.innerHTML = "";
+  function shieldDisplay(shieldTechnology, shieldTechnologyLevel) {
+    const display = document.getElementById('display');
+    display.innerHTML = '';
+  
     let name = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
-
+  
     let currentDeuteriumCost = Math.round(shieldTechnology.deuterium_cost * Math.pow(1.5, shieldTechnologyLevel));
     let currentResearchTime = Math.round(shieldTechnology.research_time * Math.pow(2, shieldTechnologyLevel));
-
+  
     name.innerHTML = shieldTechnology.name;
-    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
-    researchTime.innerHTML = "Research time : " + currentResearchTime;
-    upgradeButton.type = "button";
-    upgradeButton.name = "shield";
-    upgradeButton.value = "upgrade";
-
+    deuteriumCost.innerHTML = 'Deuterium cost: ' + currentDeuteriumCost;
+    researchTime.innerHTML = 'Research time: ' + currentResearchTime;
+    upgradeButton.type = 'button';
+    upgradeButton.name = 'shield';
+    upgradeButton.value = 'upgrade';
+  
     display.appendChild(name);
     display.appendChild(deuteriumCost);
     display.appendChild(researchTime);
     display.appendChild(upgradeButton);
-
+  
+    let countdownInterval;
+  
     upgradeButton.addEventListener('click', async function() {
-        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=shield" + "&level=" + shieldTechnologyLevel);
-        const data = await response.json();
-
-        if (data === "success") {
-            shieldTechnologyLevel++;
-            shieldDisplay(shieldTechnology, shieldTechnologyLevel);
+      const upgradeModal = document.getElementById('upgradeModal');
+      const countdownTimer = document.getElementById('countdownTimer');
+  
+      let researchTime = currentResearchTime;
+      let secondsLeft = researchTime;
+  
+      upgradeModal.style.display = 'block';
+      countdownTimer.textContent = secondsLeft;
+  
+      countdownInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          countdownTimer.textContent = secondsLeft;
+        } else {
+          clearInterval(countdownInterval);
+          upgradeModal.style.display = 'none';
+  
+          fetch(
+            'http://esigalactic/api/technologies-upgradeAPI.php?technology=shield' +
+              '&level=' +
+              shieldTechnologyLevel
+          )
+            .then(response => response.json())
+            .then(data => {
+              if (data === 'success') {
+                shieldTechnologyLevel++;
+                shieldDisplay(shieldTechnology, shieldTechnologyLevel);
+              }
+              update();
+            });
         }
-        update();
+      }, 1000);
     });
-}
+  
+    window.addEventListener('click', function(event) {
+      const upgradeModal = document.getElementById('upgradeModal');
+      if (event.target === upgradeModal) {
+        upgradeModal.style.display = 'none';
+        clearInterval(countdownInterval);
+      }
+    });
+  }
 
-function weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel) {
-    display.innerHTML = "";
+  function weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel) {
+    const display = document.getElementById('display');
+    display.innerHTML = '';
+  
     let name = document.createElement('p');
     let metalCost = document.createElement('p');
     let deuteriumCost = document.createElement('p');
     let researchTime = document.createElement('p');
     let upgradeButton = document.createElement('input');
-
+  
     let currentMetalCost = Math.round(weaponryTechnology.metal_cost * Math.pow(1.5, weaponryTechnologyLevel));
     let currentDeuteriumCost = Math.round(weaponryTechnology.deuterium_cost * Math.pow(1.5, weaponryTechnologyLevel));
     let currentResearchTime = Math.round(weaponryTechnology.research_time * Math.pow(2, weaponryTechnologyLevel));
-
+  
     name.innerHTML = weaponryTechnology.name;
-    metalCost.innerHTML = "Metal cost : " + currentMetalCost;
-    deuteriumCost.innerHTML = "Deuterium cost : " + currentDeuteriumCost;
-    researchTime.innerHTML = "Research time : " + currentResearchTime;
-    upgradeButton.type = "button";
-    upgradeButton.name = "weaponry";
-    upgradeButton.value = "upgrade";
-
+    metalCost.innerHTML = 'Metal cost: ' + currentMetalCost;
+    deuteriumCost.innerHTML = 'Deuterium cost: ' + currentDeuteriumCost;
+    researchTime.innerHTML = 'Research time: ' + currentResearchTime;
+    upgradeButton.type = 'button';
+    upgradeButton.name = 'weaponry';
+    upgradeButton.value = 'upgrade';
+  
     display.appendChild(name);
     display.appendChild(metalCost);
     display.appendChild(deuteriumCost);
     display.appendChild(researchTime);
     display.appendChild(upgradeButton);
-
-    upgradeButton.addEventListener('click', async function() {
-        const response = await fetch("http://esigalactic/api/technologies-upgradeAPI.php?technology=weaponry" + "&level=" + weaponryTechnologyLevel);
-        const data = await response.json();
-
-        if (data === "success") {
-            weaponryTechnologyLevel++;
-            weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel);
+  
+    let countdownInterval;
+  
+    upgradeButton.addEventListener('click', function() {
+      const upgradeModal = document.getElementById('upgradeModal');
+      const countdownTimer = document.getElementById('countdownTimer');
+  
+      let researchTime = currentResearchTime;
+      let secondsLeft = researchTime;
+  
+      upgradeModal.style.display = 'block';
+      countdownTimer.textContent = secondsLeft;
+  
+      countdownInterval = setInterval(() => {
+        if (secondsLeft > 0) {
+          secondsLeft--;
+          countdownTimer.textContent = secondsLeft;
+        } else {
+          clearInterval(countdownInterval);
+          upgradeModal.style.display = 'none';
+  
+          fetch(
+            'http://esigalactic/api/technologies-upgradeAPI.php?technology=weaponry' +
+              '&level=' +
+              weaponryTechnologyLevel
+          )
+            .then(response => response.json())
+            .then(data => {
+              if (data === 'success') {
+                weaponryTechnologyLevel++;
+                weaponryDisplay(weaponryTechnology, weaponryTechnologyLevel);
+              }
+              update();
+            });
         }
-        update();
+      }, 1000);
     });
-}
-
-
+  
+    window.addEventListener('click', function(event) {
+      const upgradeModal = document.getElementById('upgradeModal');
+      if (event.target === upgradeModal) {
+        upgradeModal.style.display = 'none';
+        clearInterval(countdownInterval);
+      }
+    });
+  }
+  
+  
 async function update() {
     updateWalletData();
     const answ = await fetch("http://esigalactic/api/technologies-displayAPI.php");
@@ -327,3 +508,11 @@ async function updateWalletData() {
 }
 
 window.onload = update();
+
+async function planetStats() {
+    const answ = await fetch("http://esigalactic/api/planet-statsAPI.php");
+    const data = await answ.json();
+    console.log(data);
+}
+
+planetStats();

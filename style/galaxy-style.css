@@ -143,3 +143,21 @@ input[type="submit"]:hover{
     z-index: 1;
     transition: 500ms;
 }
+
+.error-message {
+    position: fixed;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffcccc;
+    color: #ff0000;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.error-message.hide {
+    opacity: 0;
+}

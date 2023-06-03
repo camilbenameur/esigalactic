@@ -23,6 +23,19 @@ class Database
         $query->execute([$playerId, $universeId]);
         return $query->fetchAll();
     }
+
+    public function isWallet($playerId, $universeId)
+    {
+        return (count($this->getWallet($playerId, $universeId)) > 0);
+    }
+
+    public function insertWalletIfNot($playerId, $universeId)
+    {
+        if(!$this->isWallet($playerId, $universeId)) {
+            $query = $this->db->prepare("INSERT INTO wallet (player_id, universe_id, metal, deuterium, energy) VALUES (?, ?, 1000, 1000, 1000);");
+            $query->execute([$playerId, $universeId]);
+        }
+    }
 }
 
 class SessionManager
@@ -43,34 +56,32 @@ class Authentication
     private $db;
     private $sessionManager;
 
-    public function __construct($db, $sessionManager)
+    public function __construct()
     {
-        $this->db = $db;
-        $this->sessionManager = $sessionManager;
+        $this->db = new Database("localhost", "esigalactic", "root", "");
+        $this->sessionManager = new SessionManager();
     }
 
     public function authenticate($name, $password, $mail)
     {
-        $rows = $this->db->getPlayer($name, $password, $mail);
+        $playerRows = $this->db->getPlayer($name, $password, $mail);
 
-        if (count($rows) > 0) {
+        if (count($playerRows) > 0 && isset($_POST['universe-choice'])) {
             $this->sessionManager->start();
             $this->sessionManager->set("connected", true);
-            $this->sessionManager->set("player_id", $rows[0]["id"]);
+            $this->sessionManager->set("player_id", $playerRows[0]["id"]);
             $this->sessionManager->set("universe-choice", $_POST['universe-choice']);
             $this->sessionManager->set("galaxy-choice", 1);
             $this->sessionManager->set("solar-system-choice", 1);
-            $this->sessionManager->set("planet-choice", 1);
-            echo "Identifiants corrects";
-            echo $_SESSION["player_id"];
-            echo $_SESSION["universe-choice"];
-            $walletRows = $this->db->getWallet($_SESSION["player_id"], $_SESSION["universe-choice"]);
-            $this->sessionManager->set("deuterium", $walletRows[0]["deuterium"]);
+
+            $this->db->insertWalletIfNot($playerRows[0]["id"], $_POST['universe-choice']);
+            $walletRows = $this->db->getWallet($playerRows[0]["id"], $_POST['universe-choice']);
             $this->sessionManager->set("metal", $walletRows[0]["metal"]);
+            $this->sessionManager->set("deuterium", $walletRows[0]["deuterium"]);
             $this->sessionManager->set("energy", $walletRows[0]["energy"]);
-            header("Location:../front/portal.php");
+        
+            header("Location:../front/galaxy.php");
         } else {
-            echo "Identifiants incorrects";
             header("Location:../front/login.php");
         }
     }
@@ -81,10 +92,10 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['mail']))
     $password = $_POST['password'];
     $mail = $_POST['mail'];
 
-    $db = new Database("localhost", "esigalactic", "root", "");
-    $sessionManager = new SessionManager();
-    $authentication = new Authentication($db, $sessionManager);
+    $authentication = new Authentication();
     $authentication->authenticate($name, $password, $mail);
+
 } else {
     echo "Requête incorrecte";
 }
+

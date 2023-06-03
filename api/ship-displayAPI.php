@@ -26,11 +26,13 @@ function insertShipArchetype ($name, $building_time, $metal_building_cost, $deut
 }
 
 $query = $db->prepare("SELECT s.id, s.planet_id, s.archetype_id, s.amount, p.player_id
-    FROM ship AS s
-    JOIN planet AS p ON s.planet_id = p.id
-    WHERE p.player_id = ?;");
+FROM ship AS s
+JOIN planet AS p ON s.planet_id = p.id
+JOIN solar_system AS ss ON p.solar_system_id = ss.id
+JOIN galaxy AS g ON ss.galaxy_id = g.id
+WHERE p.player_id = ? AND g.universe_id = ?;");
 
-$query->execute([$playerId]);
+$query->execute([$playerId, $_SESSION["universe-choice"]]);
 $ships = $query->fetchAll();
 
 $data = [
