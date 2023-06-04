@@ -50,10 +50,7 @@ class GalaxyAPI {
           });
         });
     });
-  }
-  
-  
-  
+  } 
   
   init() {
     window.onload = this.update;
@@ -88,7 +85,6 @@ class GalaxyAPI {
       }, 300); 
     }, 3000);
   }
-  
 }
 
 const galaxyAPI = new GalaxyAPI('http://esigalactic/api/galaxyAPI.php', 'galaxy-choice', 'solar-system-choice', 'planet-display');
