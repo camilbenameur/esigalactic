@@ -12,3 +12,4 @@ else
     header("Location:../front/login.php");
 }
 
+?>

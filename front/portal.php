@@ -38,8 +38,8 @@ if(!isset($_SESSION["connected"]) || $_SESSION["connected"] !== true)
         <form action="../api/portal-process.php" method="POST">
             <input type="submit" name="page" value="galaxy">
             <input type="submit" name="page" value="infrastructure">
-            <input type="submit" name="page" value="Space yard">
-            <input type="submit" name="page" value="Research lab">
+            <input type="submit" name="page" value="space-yard">
+            <input type="submit" name="page" value="research-lab">
             <input type="submit" name="page" value="fleet">
             <input type="submit" name="page" value="admin">
         </form>
