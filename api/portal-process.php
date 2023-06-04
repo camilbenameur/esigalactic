@@ -1,30 +1,56 @@
 <?php
 
+/**
+ * Represents a page redirector.
+ */
+class PageRedirector
+{
+    /**
+     * Redirects to the specified page.
+     *
+     * @param string $page The page to redirect to.
+     */
+    public function redirectToPage($page)
+    {
+        switch ($page) {
+            case 'galaxy':
+                $this->redirectTo("../front/galaxy.php");
+                break;
+            case 'infrastructure':
+                $this->redirectTo("../front/infrastructure.php");
+                break;
+            case 'space-yard':
+                $this->redirectTo("../front/space-yard.php");
+                break;
+            case 'research-lab':
+                $this->redirectTo("../front/research-lab.php");
+                break;
+            case 'fleet':
+                $this->redirectTo("../front/fleet.php");
+                break;
+            case 'admin':
+                $this->redirectTo("../front/admin.php");
+                break;
+            default:
+                $this->redirectTo("../front/portal.php");
+                break;
+        }
+    }
+
+    /**
+     * Performs the actual redirect to the specified URL.
+     *
+     * @param string $url The URL to redirect to.
+     */
+    private function redirectTo($url)
+    {
+        header("Location: $url");
+        exit();
+    }
+}
+
 if (isset($_POST['page'])) {
     $page = $_POST['page'];
-
-    switch ($page) {
-        case 'galaxy':
-            header("Location: ../front/galaxy.php");
-            exit();
-        case 'infrastructure':
-            header("Location: ../front/infrastructure.php");
-            exit();
-        case 'Space yard':
-            header("Location: ../front/space-yard.php");
-            exit();
-        case 'Research lab':
-            header("Location: ../front/research-lab.php");
-            exit();
-        case 'fleet':
-            header("Location: ../front/fleet.php");
-            exit();
-        case 'admin':
-            header("Location: ../front/admin.php");
-            exit();
-        default:
-            // Redirection par défaut si aucune correspondance n'est trouvée
-            header("Location: ../front/portal.php");
-            exit();
-    }
+    $redirector = new PageRedirector();
+    $redirector->redirectToPage($page);
 }
